@@ -70,7 +70,7 @@ class ImageUploadHandler
 
         // Return upload file's uri.
         return [
-            'path' => config('app.url') . "/$upload_path/$filename"
+            'path' => config('app.url') . "/{$upload_path}{$filename}"
         ];
     }
 
