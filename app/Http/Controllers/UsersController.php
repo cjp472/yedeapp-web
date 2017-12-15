@@ -10,6 +10,17 @@ use App\Handlers\ImageUploadHandler;
 class UsersController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // Auth all the methods except show.
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
+    /**
      * User profile show page.
      *
      * @param  App\Models\User  $user
@@ -28,6 +39,11 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        // Laravel's base class 'Controller' has a trait called 'AuthorizesRequests',
+        // and this trait has a method called 'authorize()' which could use the UserPolicy
+        // methods to auth UsersContoller methods.
+        $this->authorize('update', $user);
+
         return view('users.edit', compact('user'));
     }
 
@@ -41,6 +57,8 @@ class UsersController extends Controller
      */
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
+        $this->authorize('update', $user);
+        
         $data = $request->all();
 
         // Set tha avatar's width to 362px
