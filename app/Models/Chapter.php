@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chapter extends Model
 {
-    protected $fillable = [
-        'title', 'desc'
-    ];
+    protected $fillable = ['title', 'desc'];
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }

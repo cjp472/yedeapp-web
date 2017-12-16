@@ -16,7 +16,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app" class="welcome">
+    <div id="app" class="welcome-page">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 head">

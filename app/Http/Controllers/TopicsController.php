@@ -9,14 +9,25 @@ use App\Http\Requests\TopicRequest;
 
 class TopicsController extends Controller
 {
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
+	/**
+     * Book's topics page with chapters.
+     *
+     * @param  App\Models\User  $user
+     * @return View
+     */
 	public function index()
 	{
-		$topics = Topic::paginate();
+		$topics = Topic::all();
 		return view('topics.index', compact('topics'));
 	}
 
