@@ -2,8 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Models\Topic::class, function (Faker $faker) {
-    
+$factory->define(App\Models\Chapter::class, function (Faker $faker) {
     $sentence = $faker->sentence();
 
     // Any time in this month
@@ -14,7 +13,6 @@ $factory->define(App\Models\Topic::class, function (Faker $faker) {
     
     return [
         'title' => $sentence,
-        'body' => $faker->text(),
         'desc' => $sentence,
         'created_at' => $created_at,
         'updated_at' => $updated_at

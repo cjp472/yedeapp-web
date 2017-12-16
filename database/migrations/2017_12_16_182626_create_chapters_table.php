@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBooksTable extends Migration
+class CreateChaptersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('chapters', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->index()->comment('书名');
-            $table->text('brief')->nullable()->comment('描述');
-            $table->text('preface')->nullable()->comment('简介');
-            $table->integer('chapter_count')->default(0)->comment('章数');
+            $table->string('title')->index()->comment('章名');
+            $table->integer('book_id')->index()->comment('所属书目');
+            $table->text('desc')->nullable()->comment('描述');
+            $table->integer('topic_count')->default(0)->comment('小节数');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('chapters');
     }
 }
