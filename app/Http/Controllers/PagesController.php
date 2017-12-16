@@ -7,9 +7,19 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     /**
-     * Website's index page.
+     * Welcome page.
      *
-     * @return void
+     * @return View
+     */
+    public function welcome()
+    {
+        return view('pages.welcome');
+    }
+
+    /**
+     * Main page.
+     *
+     * @return View
      */
     public function root()
     {
