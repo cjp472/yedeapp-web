@@ -8,6 +8,11 @@ class Topic extends Model
         'title', 'body', 'user_id', 'chapter_id', 'book_id', 'comment_count', 'view_count', 'order', 'desc', 'slug'
     ];
 
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
+
     public function chapter()
     {
         return $this->belongsTo(Chapter::class);

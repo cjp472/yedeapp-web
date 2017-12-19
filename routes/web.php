@@ -30,6 +30,8 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::resource('user', 'UserController', ['only' => ['show', 'update', 'edit']]);
-Route::resource('topic', 'TopicController', ['only' => ['show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('topic', 'TopicController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
 
-Route::get('books/{book}/{topic}/{slug?}', 'TopicController@index')->name('topic.index');
+Route::resource('book', 'BookController', ['only' => ['show', 'update', 'edit']]);
+
+//Route::get('books/{book}', 'TopicController@index')->name('topic.index');

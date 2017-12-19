@@ -17,6 +17,7 @@ class CreateTopicsTable extends Migration
             $table->integer('comment_count')->unsigned()->default(0);
             $table->integer('view_count')->unsigned()->default(0);
             $table->integer('order')->unsigned()->default(0);
+            $table->integer('free')->unsigned()->default(0);
             $table->text('desc');
             $table->string('slug')->nullable();
             $table->timestamps();

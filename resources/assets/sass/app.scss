@@ -127,9 +127,9 @@ body {
     }
 }
 
-/* Topics index page */
-.topic-index-page {
-    .topic-list {
+/* Book show page */
+.book-show-page {
+    .book-detail {
         @include page-content-container;
 
         .head {
@@ -167,7 +167,7 @@ body {
     }
 }
 
-/* Topics show page */
+/* Topic show page */
 .topic-show-page {
     // Part 1: topic detail
     .topic-detail {

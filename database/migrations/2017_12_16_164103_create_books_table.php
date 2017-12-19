@@ -16,9 +16,12 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->index()->comment('书名');
+            $table->string('cover')->index()->comment('封面');
             $table->text('brief')->nullable()->comment('描述');
             $table->text('preface')->nullable()->comment('简介');
             $table->integer('chapter_count')->default(0)->comment('章数');
+            $table->integer('price')->unsigned()->default(0);
+            $table->string('slug')->nullable()->comment('英文名');
             $table->timestamps();
         });
     }
