@@ -22,7 +22,6 @@ class TopicsController extends Controller
 	/**
      * Book's topics page with chapters.
      *
-     * @param  App\Models\User  $user
      * @return View
      */
 	public function index()
@@ -31,6 +30,12 @@ class TopicsController extends Controller
 		return view('topics.index', compact('topics'));
 	}
 
+	/**
+     * A topic detail page.
+     *
+     * @param  App\Models\Topic  $topic
+     * @return View
+     */
     public function show(Topic $topic)
     {
         return view('topics.show', compact('topic'));

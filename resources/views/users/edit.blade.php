@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
+@section('title', '编辑个人资料' . ' - '. config('app.name'))
+
 @section('content')
 
-<div class="container">
+<div class="row">
     <div class="panel panel-default col-md-10 col-md-offset-1">
         <div class="panel-heading">
             <h4>
@@ -27,20 +29,25 @@
                     <input class="form-control" type="text" name="email" id="email-field" value="{{ old('email', $user->email ) }}" />
                 </div>
                 <div class="form-group">
+                    <label for="phone-field">手 机</label>
+                    <input class="form-control" type="text" name="phone" id="phone-field" value="{{ old('phone', $user->phone ) }}" />
+                </div>
+                <div class="form-group">
                     <label for="introduction-field">个人简介</label>
                     <textarea name="introduction" id="introduction-field" class="form-control" rows="3">{{ old('introduction', $user->introduction ) }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="" class="avatar-label">用户头像</label>
-                    <input type="file" name="avatar">
+                    <label for="avatar-field" class="avatar-label">用户头像</label>
+                    <input type="file" name="avatar" id="avatar-field">
 
                     @if($user->avatar)
                         <br>
-                        <img class="thumbnail img-responsive" src="{{ $user->avatar }}" width="200" />
+                        <label for="avatar-field"><img class="img-thumbnail img-responsive" src="{{ $user->avatar }}" width="200" /></label>
                     @endif
                 </div>
-                <div class="well well-sm">
-                    <button type="submit" class="btn btn-primary">保存</button>
+                <div class="form-group">
+                    <hr>
+                    <button type="submit" class="btn btn-primary">　　保存　　</button>
                 </div>
             </form>
         </div>
