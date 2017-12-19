@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.app')
 
 @section('title', $user->name . ' 的个人资料 - ' . config('app.name'))
     
@@ -27,7 +27,7 @@
                         <h4><strong>注册于</strong></h4>
                         <p>{{ $user->created_at->diffForHumans() }}</p>
                         <hr>
-                        <p class="text-center"><a href="{{ route('users.edit', $user->id) }}" class="btn btn-default">　　编辑个人资料　　</a></p>
+                        <p class="text-center"><a href="{{ route('user.edit', $user->id) }}" class="btn btn-default btn-wider-look">编辑个人资料</a></p>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.app')
 
 @section('title', config('app.name'))
 
@@ -16,7 +16,7 @@
                 <p>本书还会对这些基础知识点进行延伸扩展，为你讲解一些在 Web 开发中更为专业、实用的技能，如 Git 工作流、Gulp 前端工作流、Bootstrap 框架基本使用等。这些知识将为你未来的编程开发奠定下坚实的基础。使你不论是在做自己的个人项目，或是构建一个伟大的商业产品时，都能得心应手。</p>
             </div>
             <div class="extra">
-                <a href="" class="btn btn-primary">订阅 ￥39.00</a>
+                <a href="" class="btn btn-primary btn-wider-look">订阅 ￥39.00</a>
 
             </div>
         </div>
@@ -25,11 +25,11 @@
         <div class="chapters">
             <dl>
                 <dt>第 1 章 开始编写</dt>
-                <dd><a href=""><div class="free">免费试读</div>1.1 序言</a></dd>
-                <dd><a href=""><div class="free">免费试读</div>1.2 数据库视图管理工具</a></dd>
-                <dd><a href=""><div class="free">免费试读</div>1.3 数据库视图管理工具</a></dd>
-                <dd><a href=""><div class="free">免费试读</div>1.4 数据库视图管理工具</a></dd>
-                <dd><a href=""><div class="free">免费试读</div>1.5 数据库视图管理工具</a></dd>
+                <dd><a href=""><span class="label label-primary">免费试读</span>1.1 序言</a></dd>
+                <dd><a href=""><span class="label label-primary">免费试读</span>1.2 数据库视图管理工具</a></dd>
+                <dd><a href=""><span class="label label-primary">免费试读</span>1.3 数据库视图管理工具</a></dd>
+                <dd><a href=""><span class="label label-primary">免费试读</span>1.4 数据库视图管理工具</a></dd>
+                <dd><a href=""><span class="label label-primary">免费试读</span>1.5 数据库视图管理工具</a></dd>
             </dl>
             <dl>
                 <dt>第 2 章 一段不容易的路</dt>

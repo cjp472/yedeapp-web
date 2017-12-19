@@ -7,7 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Handlers\ImageUploadHandler;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,7 +28,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        return view('user.show', compact('user'));
     }
     
     /**
@@ -44,7 +44,7 @@ class UsersController extends Controller
         // methods to auth UsersContoller methods.
         $this->authorize('update', $user);
 
-        return view('users.edit', compact('user'));
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -73,6 +73,6 @@ class UsersController extends Controller
 
         $user->update($data);
         
-        return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功');
+        return redirect()->route('user.show', $user->id)->with('success', '个人资料更新成功');
     }
 }

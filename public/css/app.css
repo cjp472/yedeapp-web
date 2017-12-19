@@ -8398,6 +8398,11 @@ body {
   margin-top: 0.8em;
 }
 
+.btn-wider-look {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
 /* Header */
 
 .navbar-static-top {
@@ -8479,7 +8484,7 @@ body {
 
 /* Topics index page */
 
-.topics-index-page .topic-list {
+.topic-index-page .topic-list {
   margin-bottom: 20px;
   background-color: #fff;
   border: 1px solid #d3e0e9;
@@ -8488,44 +8493,34 @@ body {
           box-shadow: 0px 1px 2px 0 rgba(101, 129, 156, 0.08);
 }
 
-.topics-index-page .topic-list .head {
+.topic-index-page .topic-list .head {
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
-.topics-index-page .topic-list .body {
+.topic-index-page .topic-list .body {
   padding: 10px 30px;
   font-size: 1.1em;
 }
 
-.topics-index-page .topic-list .body .chapters dt {
+.topic-index-page .topic-list .body .chapters dt {
   margin-bottom: 1em;
   font-size: 1.2em;
 }
 
-.topics-index-page .topic-list .body .chapters dd {
+.topic-index-page .topic-list .body .chapters dd {
   margin: 0.5em auto;
   line-height: 2em;
   border-bottom: #eee 1px solid;
   text-indent: 0.5em;
 }
 
-.topics-index-page .topic-list .body .chapters dd .free {
-  display: inline-block;
-  min-width: 3em;
+.topic-index-page .topic-list .body .chapters dd .label {
   margin-right: 1em;
-  padding: 0.4em 0.5em;
-  background-color: #1890ff;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  text-indent: 0px;
+  padding: 0.2em 0.5em;
 }
 
-.topics-index-page .topic-list .body .chapters dd span i {
+.topic-index-page .topic-list .body .chapters dd span > i {
   margin-right: 1em;
   color: #ccc;
   font-size: 0.5em;
@@ -8533,7 +8528,7 @@ body {
 
 /* Topics show page */
 
-.topics-show-page .topic-detail {
+.topic-show-page .topic-detail {
   margin-bottom: 20px;
   background-color: #fff;
   border: 1px solid #d3e0e9;
@@ -8542,46 +8537,46 @@ body {
           box-shadow: 0px 1px 2px 0 rgba(101, 129, 156, 0.08);
 }
 
-.topics-show-page .topic-detail .head {
+.topic-show-page .topic-detail .head {
   border-bottom: #ddd 1px solid;
   line-height: 4em;
 }
 
-.topics-show-page .topic-detail .head h1 {
+.topic-show-page .topic-detail .head h1 {
   font-size: 1.5em;
 }
 
-.topics-show-page .topic-detail .head .favorite {
+.topic-show-page .topic-detail .head .favorite {
   vertical-align: middle;
 }
 
-.topics-show-page .topic-detail .body {
+.topic-show-page .topic-detail .body {
   padding: 1em 0 2em;
 }
 
-.topics-show-page .topic-detail .body .content {
+.topic-show-page .topic-detail .body .content {
   font-size: 1.2em;
 }
 
-.topics-show-page .topic-detail .sns-share {
+.topic-show-page .topic-detail .sns-share {
   padding: 5em 2em;
   text-align: center;
 }
 
-.topics-show-page .topic-detail .sns-share .sns-component {
+.topic-show-page .topic-detail .sns-share .sns-component {
   display: inline-block;
   margin-right: 1em;
 }
 
-.topics-show-page .topic-detail .sns-share .favorite {
+.topic-show-page .topic-detail .sns-share .favorite {
   display: inline-block;
 }
 
-.topics-show-page .topic-detail .prev-and-next {
+.topic-show-page .topic-detail .prev-and-next {
   margin: 1em auto 2em;
 }
 
-.topics-show-page .topic-comments {
+.topic-show-page .topic-comments {
   margin-bottom: 20px;
   background-color: #fff;
   border: 1px solid #d3e0e9;
@@ -8591,24 +8586,24 @@ body {
   padding: 1em 0 2em;
 }
 
-.topics-show-page .topic-comments .head {
+.topic-show-page .topic-comments .head {
   margin-bottom: 1em;
 }
 
-.topics-show-page .topic-comments .body .comments .comment {
+.topic-show-page .topic-comments .body .comments .comment {
   margin-top: 30px;
 }
 
-.topics-show-page .topic-comments .body .comments .reply {
+.topic-show-page .topic-comments .body .comments .reply {
   padding-top: 10px;
   border-top: #eee 1px solid;
 }
 
-.topics-show-page .topic-comments .body .comments .write {
+.topic-show-page .topic-comments .body .comments .write {
   margin-top: 50px;
 }
 
-.topics-show-page .topic-comments .body .comments .write .editor {
+.topic-show-page .topic-comments .body .comments .write .editor {
   width: 100%;
   min-height: 12em;
   padding: 10px;
@@ -8621,7 +8616,7 @@ body {
   outline: none;
 }
 
-.topics-show-page .topic-comments .body .comments .author .vline {
+.topic-show-page .topic-comments .body .comments .author .vline {
   display: inline-block;
   width: 3px;
   height: 15px;
@@ -8630,39 +8625,39 @@ body {
   background-color: #1890ff;
 }
 
-.topics-show-page .topic-comments .body .comments .comment-date {
+.topic-show-page .topic-comments .body .comments .comment-date {
   margin-top: 5px;
   color: #999;
 }
 
 /* User profile */
 
-.users-show-page .user-info .img-thumbnail {
+.user-show-page .user-info .img-thumbnail {
   margin-bottom: 0px;
 }
 
-.users-show-page .user-tabs .panel-body {
+.user-show-page .user-tabs .panel-body {
   padding: 20px;
 }
 
-.users-show-page .user-tabs .panel-body .nav-tabs > li > a {
+.user-show-page .user-tabs .panel-body .nav-tabs > li > a {
   color: #555;
 }
 
-.users-show-page .user-tabs .panel-body .nav-tabs > li.active > a,
-.users-show-page .user-tabs .panel-body .nav-tabs > li.active > a:hover,
-.users-show-page .user-tabs .panel-body .nav-tabs > li.active > a:focus {
+.user-show-page .user-tabs .panel-body .nav-tabs > li.active > a,
+.user-show-page .user-tabs .panel-body .nav-tabs > li.active > a:hover,
+.user-show-page .user-tabs .panel-body .nav-tabs > li.active > a:focus {
   background-color: #fff;
 }
 
-.users-show-page .user-tabs .panel-body .tab-content {
+.user-show-page .user-tabs .panel-body .tab-content {
   padding: 15px;
 }
 
 /* User edit page */
 
-.users-edit-page .panel-body .img-thumbnail,
-.users-edit-page #avatar-field {
+.user-edit-page .panel-body .img-thumbnail,
+.user-edit-page #avatar-field {
   cursor: pointer;
 }
 

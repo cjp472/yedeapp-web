@@ -51,6 +51,10 @@ body {
         margin-top: 0.8em;
     }
 }
+.btn-wider-look {
+    padding-left: 35px;
+    padding-right: 35px;
+}
 
 /* Header */
 .navbar-static-top {
@@ -124,7 +128,7 @@ body {
 }
 
 /* Topics index page */
-.topics-index-page {
+.topic-index-page {
     .topic-list {
         @include page-content-container;
 
@@ -148,26 +152,14 @@ body {
                     border-bottom: #eee 1px solid;
                     text-indent: 0.5em;
 
-                    .free {
-                        display: inline-block;
-                        min-width: 3em;
+                    .label {
                         margin-right: 1em;
-                        padding: 0.4em 0.5em;
-                        background-color: $brand-primary;
-                        border-radius: 4px;
-                        font-size: 12px;
-                        font-weight: 700;
-                        line-height: 1;
-                        color: #fff;
-                        text-align: center;
-                        text-indent: 0px;
+                        padding: 0.2em 0.5em;
                     }
-                    span {
-                        i {
-                            margin-right: 1em;
-                            color: #ccc;
-                            font-size: 0.5em;
-                        }
+                    span > i {
+                        margin-right: 1em;
+                        color: #ccc;
+                        font-size: 0.5em;
                     }
                 }
             }
@@ -176,7 +168,7 @@ body {
 }
 
 /* Topics show page */
-.topics-show-page {
+.topic-show-page {
     // Part 1: topic detail
     .topic-detail {
         @include page-content-container;
@@ -273,7 +265,7 @@ body {
 }
 
 /* User profile */
-.users-show-page {
+.user-show-page {
     .user-info {
         .img-thumbnail {
             margin-bottom: 0px;
@@ -301,7 +293,7 @@ body {
 }
 
 /* User edit page */
-.users-edit-page {
+.user-edit-page {
     .panel-body .img-thumbnail,
     #avatar-field {
         cursor: pointer;
