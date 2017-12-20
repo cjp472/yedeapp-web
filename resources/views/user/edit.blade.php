@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <hr>
-                    <button type="submit" class="btn btn-primary">　　保存　　</button>
+                    <button type="submit" class="btn btn-primary btn-wider-look">保存</button>
                 </div>
             </form>
         </div>

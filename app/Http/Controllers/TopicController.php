@@ -38,7 +38,10 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        return view('topic.show', compact('topic'));
+		$prev = Topic::where('id', '<', $topic->id)->orderBy('id', 'desc')->first();
+		$next = Topic::where('id', '>', $topic->id)->orderBy('id', 'asc')->first();
+
+        return view('topic.show', compact('topic', 'prev', 'next'));
     }
 
 	public function create(Topic $topic)

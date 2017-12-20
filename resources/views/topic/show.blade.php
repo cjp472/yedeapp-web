@@ -22,8 +22,8 @@
         </div>
 
         <div class="prev-and-next clearfix">
-            <a href="" class="btn btn-default pull-left prev"><i class="glyphicon glyphicon-chevron-left"></i> 上一节</a>
-            <a href="" class="btn btn-default pull-right next">下一节 <i class="glyphicon glyphicon-chevron-right"></i></a>
+            <a href="{{ route('topic.show', $prev->id) }}" class="btn btn-default pull-left prev" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $prev->title }}"><i class="glyphicon glyphicon-chevron-left"></i> 上一节</a>
+            <a href="{{ route('topic.show', $next->id) }}" class="btn btn-default pull-right next" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $next->title }}">下一节 <i class="glyphicon glyphicon-chevron-right"></i></a>
         </div>
 
     </div>
@@ -38,8 +38,8 @@
         </div>
 
         <div class="body">
-            <ul class="media-list comments">
-                @foreach($topic->comments as $comment)
+            <ul class="media-list comments"> 
+                @forelse($topic->comments as $comment)
                     <li class="media comment">
                         <div class="media-left">
                             <a href="{{ route('user.show', $comment->user_id) }}">
@@ -49,7 +49,7 @@
                         <div class="media-body">
                             <div class="media-heading">
                                 <span class="author">{{ $comment->user->name }}</span>
-                                <a class="pull-right" href=""><i class="glyphicon glyphicon-thumbs-up"></i> 10</a>
+                                <a class="pull-right" href=""><i class="glyphicon glyphicon-thumbs-up"></i> {{ $comment->star }}</a>
                             </div>
                             <div class="comment-content">{{ $comment->body }}</div>
                             <div class="comment-date">{{ $comment->updated_at->diffForHumans() }}</div>
@@ -59,7 +59,7 @@
                                     <div class="media-body">
                                         <div class="media-heading">
                                             <span class="author"><i class="vline"></i>作者回复</span>
-                                            <a class="pull-right" href=""><i class="glyphicon glyphicon-thumbs-up"></i> 220</a>
+                                            <a class="pull-right" href=""><i class="glyphicon glyphicon-thumbs-up"></i> {{ $comment->star }}</a>
                                         </div>
                                         <div class="comment-content">{{ $comment->sub->body }}</div>
                                         <div class="comment-date">{{ $comment->sub->updated_at->diffForHumans() }}</div>
@@ -68,22 +68,28 @@
                             @endif
                         </div>
                     </li>
-                @endforeach
-                {{-- 写留言 --}}
-                <li class="media write" id="write_comment">
-                    <div class="media-left">
-                        <img class="media-object img-circle" width="50px" src="{{ Auth::user()->avatar }}">
-                    </div>
-                    <div class="media-body">
-                        <textarea class="editor" placeholder="请不要发表不友善和负能量言论"></textarea>
-                        <button class="btn btn-primary btn-wider-look" type="submit">提交</button>
-                    </div>
-                </li>
+                @empty
+                    {{-- 没有留言则留白 --}}
+                @endforelse
+
+                @guest
+                    <li class="text-center"><a href="{{ route('login') }}">留言请先登陆</a></li>
+                @else
+                    {{-- 评论框 --}}
+                    <li class="media write" id="write_comment">
+                        <div class="media-left">
+                            <img class="media-object img-circle" width="50px" src="{{ Auth::user()->avatar }}">
+                        </div>
+                        <div class="media-body">
+                            <textarea class="editor" placeholder="请不要发表不友善和负能量言论"></textarea>
+                            <button class="btn btn-primary btn-wider-look" type="submit">提交</button>
+                        </div>
+                    </li>
+                @endguest
 
             </ul>
         </div>
 
     </div>
 </div>
-
 @stop

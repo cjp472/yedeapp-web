@@ -8504,7 +8504,7 @@ body {
 }
 
 .book-show-page .book-detail .body .chapters dt {
-  margin-bottom: 1em;
+  margin: 1em 0 0;
   font-size: 1.2em;
 }
 
