@@ -26,7 +26,17 @@
 
                     @foreach($book->topics as $topic)
                         @if($topic->chapter_id === $chapter->id)
-                            <dd><a href="{{ route('topic.show', $topic->id) }}"><span class="label label-primary">免费试读</span>{{ $topic->title }}</a><span class="pull-right"><i class="glyphicon glyphicon-lock"></i></span></dd>
+                            <dd>
+                                <a href="{{ route('topic.show', $topic->id) }}">
+                                    @if($topic->free)
+                                        <span class="label label-primary">免费试读</span>    
+                                    @endif
+                                    {{ $topic->title }}
+                                </a>
+                                @if(!$topic->free)
+                                    <span class="pull-right"><i class="glyphicon glyphicon-lock"></i></span>
+                                @endif
+                            </dd>
                         @endif
                     @endforeach
 
