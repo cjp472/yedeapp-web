@@ -41,7 +41,7 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#history" aria-controls="history" role="tab" data-toggle="tab">历史</a></li>
                     <li role="presentation"><a href="#favorite" aria-controls="favorite" role="tab" data-toggle="tab">收藏</a></li>
-                    <li role="presentation"><a href="#message" aria-controls="message" role="tab" data-toggle="tab">留言</a></li>
+                    <li role="presentation"><a href="#comment" aria-controls="comment" role="tab" data-toggle="tab">留言</a></li>
                     <li role="presentation"><a href="#star" aria-controls="star" role="tab" data-toggle="tab">赞过</a></li>
                     <li role="presentation"><a href="#atme" aria-controls="atme" role="tab" data-toggle="tab">@我</a></li>
                 </ul>
@@ -50,7 +50,15 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="history">历史内容</div>
                     <div role="tabpanel" class="tab-pane" id="favorite">...</div>
-                    <div role="tabpanel" class="tab-pane" id="message">...</div>
+                    <ul role="tabpanel" class="tab-pane" id="comment">
+                        @forelse ($user->comments as $comment)
+                            <li>
+                                {{ $comment->body }}
+                            </li>
+                        @empty
+                            
+                        @endforelse
+                    </ul>
                     <div role="tabpanel" class="tab-pane" id="star">...</div>
                     <div role="tabpanel" class="tab-pane" id="atme">...</div>
                 </div>

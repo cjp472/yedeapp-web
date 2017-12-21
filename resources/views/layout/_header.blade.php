@@ -12,7 +12,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                野得APP
+                {{ config('app.name') }}
             </a>
         </div>
 

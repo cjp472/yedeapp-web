@@ -27,6 +27,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|between:3,15|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id(),
             'email' => 'required|email',
+            'phone' => 'numeric|regex:/^1[0-9]{10}$/',
             'introduction' => 'max:140',
             'avatar' => 'mimes:jpeg,bmp,png,gif|dimensions:min_width=200,min_height=200'
         ];
@@ -44,6 +45,8 @@ class UserRequest extends FormRequest
             'name.regex' => '用户名支持中英文、数字、横杠和下划线',
             'name.between' => '用户名长度须为 3 - 15 个字符',
             'name.required' => '用户名不能为空',
+            'phone.numeric' => '手机号码须为数字',
+            'phone.regex' => '请输入有效的手机号码',
             'avatar.dimensions' => '头像宽和高需要 200px 以上'
         ];
 

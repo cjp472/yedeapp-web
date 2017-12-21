@@ -6,10 +6,10 @@
 
 <div class="row book-detail">
     <div class="col-md-12 head">
-        <div class="col-sm-2 book-cover">
+        <div class="col-sm-3 book-cover">
             <img class="image-shadow" width="100%" src="{{ $book->cover }}">
         </div>
-        <div class="col-sm-10 book-brief">
+        <div class="col-sm-9 book-brief">
             <div class="title">{{ $book->title }}</div>
             <div class="brief">{!! $book->brief !!}</div>
             <div class="extra">
