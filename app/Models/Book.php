@@ -19,4 +19,9 @@ class Book extends Model
     {
         return $this->hasManyThrough(Topic::class, Chapter::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

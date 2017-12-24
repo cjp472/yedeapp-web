@@ -55,6 +55,9 @@ body {
     padding-left: 35px;
     padding-right: 35px;
 }
+.form-control {
+    border: #ccc 1px solid;
+}
 
 /* Header */
 .navbar-static-top {
@@ -92,9 +95,11 @@ body {
     position: absolute;
     bottom: 0;
     width: 100% ;
+    border-top: #ddd 1px solid;
+    box-shadow: -1px 1px 3px 0 rgba(0,34,77,.1);
     /* Set the fixed height of the footer */
     height: 60px;
-    background-color: #000;
+    background-color: #fff;
 
     .container {
         padding-right: 15px;
@@ -102,7 +107,7 @@ body {
 
         p {
             margin: 19px 0;
-            color: #c1c1c1;
+            color: $text-color;
 
             a {
                 color: inherit;

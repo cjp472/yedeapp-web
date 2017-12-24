@@ -27,7 +27,7 @@
                     @foreach($book->topics as $topic)
                         @if($topic->chapter_id === $chapter->id)
                             <dd>
-                                <a href="{{ route('topic.show', $topic->id) }}">
+                                <a href="{{ $topic->link() }}">
                                     @if($topic->free)
                                         <span class="label label-primary">免费试读</span>    
                                     @endif

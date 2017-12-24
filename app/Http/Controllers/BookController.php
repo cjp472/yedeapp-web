@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Topic;
 
 class BookController extends Controller
 {
@@ -27,4 +28,5 @@ class BookController extends Controller
     {
         return view('book.show', compact('book'));
     }
+
 }

@@ -27,4 +27,10 @@ class Topic extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function link()
+    {
+        // Inject parameters according to the topic.show route's order
+        return route('topic.show', [$this->book->slug, $this->id, $this->slug]);
+    }
 }

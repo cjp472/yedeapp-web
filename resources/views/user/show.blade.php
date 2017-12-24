@@ -15,15 +15,31 @@
                     </div>
                     <div class="media-body">
                         <hr>
-                        <h4><strong>个人简介</strong></h4>
-                        <p>{{ $user->introduction }}</p>
-                        <hr>
-                        <h4><strong>手机</strong></h4>
-                        <p>{{ $user->phone }}</p>
-                        <hr>
-                        <h4><strong>邮箱</strong></h4>
-                        <p>{{ $user->email }}</p>
-                        <hr>
+                        
+                        @if($user->introduction)
+                            <h4><strong>一句话介绍</strong></h4>
+                            <p>{{ $user->introduction }}</p>
+                            <hr>
+                        @endif
+
+                        @if($user->phone)
+                            <h4><strong>手机</strong></h4>
+                            <p>{{ $user->phone }}</p>
+                            <hr>
+                        @endif
+
+                        @if($user->phone)
+                            <h4><strong>手机</strong></h4>
+                            <p>{{ $user->phone }}</p>
+                            <hr>
+                        @endif
+                        
+                        @if($user->email)
+                            <h4><strong>邮箱</strong></h4>
+                            <p>{{ $user->email }}</p>
+                            <hr>
+                        @endif
+
                         <h4><strong>注册于</strong></h4>
                         <p>{{ $user->created_at->diffForHumans() }}</p>
                         <hr>

@@ -8403,6 +8403,10 @@ body {
   padding-right: 35px;
 }
 
+.form-control {
+  border: #ccc 1px solid;
+}
+
 /* Header */
 
 .navbar-static-top {
@@ -8444,9 +8448,12 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
+  border-top: #ddd 1px solid;
+  -webkit-box-shadow: -1px 1px 3px 0 rgba(0, 34, 77, 0.1);
+          box-shadow: -1px 1px 3px 0 rgba(0, 34, 77, 0.1);
   /* Set the fixed height of the footer */
   height: 60px;
-  background-color: #000;
+  background-color: #fff;
 }
 
 .footer .container {
@@ -8456,7 +8463,7 @@ body {
 
 .footer .container p {
   margin: 19px 0;
-  color: #c1c1c1;
+  color: #393939;
 }
 
 .footer .container p a {

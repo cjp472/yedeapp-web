@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topic;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
@@ -36,8 +37,12 @@ class TopicController extends Controller
      * @param  App\Models\Topic  $topic
      * @return View
      */
-    public function show(Topic $topic)
+    public function show(Request $request, Book $bookslug, Topic $topic, $slug = '')
     {
+		// if ( !empty($topic->slug) && $topic->slug != $request->slug ) {
+		// 	return redirect($topic->link(), 301);
+		// }
+
 		$prev = Topic::where('id', '<', $topic->id)->orderBy('id', 'desc')->first();
 		$next = Topic::where('id', '>', $topic->id)->orderBy('id', 'asc')->first();
 
@@ -52,7 +57,7 @@ class TopicController extends Controller
 	public function store(TopicRequest $request)
 	{
 		$topic = Topic::create($request->all());
-		return redirect()->route('topic.show', $topic->id)->with('message', 'Created successfully.');
+		return redirect()->route($topic->link())->with('message', 'Created successfully.');
 	}
 
 	public function edit(Topic $topic)
@@ -66,7 +71,7 @@ class TopicController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topic.show', $topic->id)->with('message', 'Updated successfully.');
+		return redirect()->route($topic->link())->with('message', 'Updated successfully.');
 	}
 
 	public function destroy(Topic $topic)
