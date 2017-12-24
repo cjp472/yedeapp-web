@@ -34,14 +34,17 @@ class TopicController extends Controller
 	/**
      * A topic detail page.
      *
+	 * @param  Illuminate\Http\Request $request
+	 * @param  App\Models\Book  $bookslug
      * @param  App\Models\Topic  $topic
      * @return View
      */
-    public function show(Request $request, Book $bookslug, Topic $topic, $slug = '')
+    public function show(Request $request, Book $bookslug, Topic $topic)
     {
-		// if ( !empty($topic->slug) && $topic->slug != $request->slug ) {
-		// 	return redirect($topic->link(), 301);
-		// }
+		// Redirect to slug link using http code 301.
+		if ( !empty($topic->slug) && $topic->slug != $request->slug ) {
+			return redirect($topic->link(), 301);
+		}
 
 		$prev = Topic::where('id', '<', $topic->id)->orderBy('id', 'desc')->first();
 		$next = Topic::where('id', '>', $topic->id)->orderBy('id', 'asc')->first();
