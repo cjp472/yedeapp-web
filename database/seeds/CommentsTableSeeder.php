@@ -23,7 +23,7 @@ class CommentsTableSeeder extends Seeder
         $faker = app(Faker\Generator::class);
 
         $comments = factory(Comment::class)
-        ->times(500)
+        ->times(2000)
         ->make()
         ->each(function ($comment, $index) use ($user_ids, $topic_ids, $faker) {
             // Get random id from ids array.

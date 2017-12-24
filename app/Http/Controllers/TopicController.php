@@ -39,13 +39,17 @@ class TopicController extends Controller
      * @param  App\Models\Topic  $topic
      * @return View
      */
-    public function show(Request $request, Book $bookslug, Topic $topic)
+    public function show(Request $request, Book $book, Topic $topic)
     {
+		// Prevent N+1
+		$topic->load('comments.user', 'comments.sub');
+
 		// Redirect to slug link using http code 301.
 		if ( !empty($topic->slug) && $topic->slug != $request->slug ) {
-			return redirect($topic->link(), 301);
+			return redirect($topic->link($book->slug), 301);
 		}
 
+		// Get previous topic and next topic
 		$prev = Topic::where('id', '<', $topic->id)->orderBy('id', 'desc')->first();
 		$next = Topic::where('id', '>', $topic->id)->orderBy('id', 'asc')->first();
 

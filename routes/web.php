@@ -33,4 +33,4 @@ Route::resource('user', 'UserController', ['only' => ['show', 'update', 'edit']]
 Route::resource('topic', 'TopicController', ['only' => ['create', 'store', 'update', 'edit', 'destroy']]);
 Route::resource('book', 'BookController', ['only' => ['show', 'update', 'edit']]);
 
-Route::get('book/{bookslug}/topic/{topic}/{slug?}', 'TopicController@show')->name('topic.show');
+Route::get('book/{book}/topic/{topic}/{slug?}', 'TopicController@show')->name('topic.show');

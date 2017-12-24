@@ -28,9 +28,14 @@ class Topic extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function link()
+    public function link($bookslug = '')
     {
+        // Provide a $bookslug param in avoiding query database multi times.
+        if (!$bookslug) {
+            $bookslug = $this->book->slug;
+        }
+
         // Inject parameters according to the topic.show route's order
-        return route('topic.show', [$this->book->slug, $this->id, $this->slug]);
+        return route('topic.show', [$bookslug, $this->id, $this->slug]);
     }
 }
