@@ -27,12 +27,6 @@
                             <p>{{ $user->phone }}</p>
                             <hr>
                         @endif
-
-                        @if($user->phone)
-                            <h4><strong>手机</strong></h4>
-                            <p>{{ $user->phone }}</p>
-                            <hr>
-                        @endif
                         
                         @if($user->email)
                             <h4><strong>邮箱</strong></h4>
@@ -54,19 +48,17 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#history" aria-controls="history" role="tab" data-toggle="tab">历史</a></li>
-                    <li role="presentation"><a href="#favorite" aria-controls="favorite" role="tab" data-toggle="tab">收藏</a></li>
-                    <li role="presentation"><a href="#comment" aria-controls="comment" role="tab" data-toggle="tab">留言</a></li>
-                    <li role="presentation"><a href="#star" aria-controls="star" role="tab" data-toggle="tab">赞过</a></li>
-                    <li role="presentation"><a href="#atme" aria-controls="atme" role="tab" data-toggle="tab">@我</a></li>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="http://www.qq.com">历史</a></li>
+                    <li><a href="#favorite">收藏</a></li>
+                    <li><a href="#comment">留言</a></li>
+                    <li><a href="#star" >赞过</a></li>
+                    <li><a href="#atme">@我</a></li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="history">历史内容</div>
-                    <div role="tabpanel" class="tab-pane" id="favorite">...</div>
-                    <div role="tabpanel" class="tab-pane" id="comment">
+                    <div class="tab-pane">历史内容</div>
                         <ul class="item-list">
                             @forelse ($comments as $comment)
                                 <li>
@@ -78,8 +70,6 @@
                         </ul>
                         <div class="text-center">{!! $comments->render() !!}</div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="star">...</div>
-                    <div role="tabpanel" class="tab-pane" id="atme">...</div>
                 </div>
             </div>
         </div>

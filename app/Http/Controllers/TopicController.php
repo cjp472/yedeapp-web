@@ -41,10 +41,7 @@ class TopicController extends Controller
      */
     public function show(Request $request, Book $book, Topic $topic)
     {
-		// Prevent N+1
-		$topic->load('comments.user', 'comments.sub');
-
-		// Redirect to slug link using http code 301.
+		// Redirect to slug link with http code 301.
 		if ( !empty($topic->slug) && $topic->slug != $request->slug ) {
 			return redirect($topic->link($book->slug), 301);
 		}
@@ -53,7 +50,21 @@ class TopicController extends Controller
 		$prev = Topic::where('id', '<', $topic->id)->orderBy('id', 'desc')->first();
 		$next = Topic::where('id', '>', $topic->id)->orderBy('id', 'asc')->first();
 
-        return view('topic.show', compact('topic', 'prev', 'next'));
+		// Get comments and load user table to prevent N+1 problem.
+		$comments = $topic
+					->comments()
+					->where('parent_id', null)
+					->orderBy('star', 'desc')
+					->orderBy('updated_at', 'desc')
+					->get()
+					->load('user');
+		// Get author replies
+		$replies = $topic
+					->comments()
+					->where('parent_id', '>', 0)
+					->get();
+
+        return view('topic.show', compact('topic', 'comments', 'replies', 'prev', 'next'));
     }
 
 	public function create(Topic $topic)

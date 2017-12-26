@@ -39,7 +39,7 @@
 
         <div class="body">
             <ul class="media-list comments"> 
-                @forelse($topic->comments as $comment)
+                @forelse($comments as $comment)
                     <li class="media comment">
                         <div class="media-left">
                             <a href="{{ route('user.show', $comment->user_id) }}">
@@ -54,22 +54,24 @@
                             <div class="comment-content">{{ $comment->body }}</div>
                             <div class="comment-date">{{ $comment->updated_at->diffForHumans() }}</div>
 
-                            {{--  @if($comment->sub)
-                                <div class="media reply">
-                                    <div class="media-body">
-                                        <div class="media-heading">
-                                            <span class="author"><i class="vline"></i>作者回复</span>
-                                            <a class="pull-right" href=""><i class="glyphicon glyphicon-thumbs-up"></i> {{ $comment->star }}</a>
+                            @foreach ($replies as $reply)
+                                @if ($reply->parent_id == $comment->id)
+                                    <div class="media reply">
+                                        <div class="media-body">
+                                            <div class="media-heading">
+                                                <span class="author"><i class="vline"></i>作者回复</span>
+                                                <a class="pull-right" href=""><i class="glyphicon glyphicon-thumbs-up"></i> {{ $reply->star }}</a>
+                                            </div>
+                                            <div class="comment-content">{{ $reply->body }}</div>
+                                            <div class="comment-date">{{ $reply->updated_at->diffForHumans() }}</div>
                                         </div>
-                                        <div class="comment-content">{{ $comment->sub->body }}</div>
-                                        <div class="comment-date">{{ $comment->sub->updated_at->diffForHumans() }}</div>
                                     </div>
-                                </div>
-                            @endif  --}}
+                                @endif
+                            @endforeach
                         </div>
                     </li>
                 @empty
-                    {{-- 没有留言则留白 --}}
+                    {{-- 没有留言 --}}
                 @endforelse
 
                 @guest

@@ -20,8 +20,4 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function sub()
-    {
-        return $this->hasOne(Comment::class, 'parent_id');
-    }
 }
