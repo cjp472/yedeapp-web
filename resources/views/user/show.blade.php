@@ -66,15 +66,18 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="history">历史内容</div>
                     <div role="tabpanel" class="tab-pane" id="favorite">...</div>
-                    <ul role="tabpanel" class="tab-pane" id="comment">
-                        @forelse ($user->comments as $comment)
-                            <li>
-                                {{ $comment->body }}
-                            </li>
-                        @empty
-                            
-                        @endforelse
-                    </ul>
+                    <div role="tabpanel" class="tab-pane" id="comment">
+                        <ul class="item-list">
+                            @forelse ($comments as $comment)
+                                <li>
+                                    {{ $comment->body }}
+                                </li>
+                            @empty
+                                {{-- 没有留言处理 --}}
+                            @endforelse
+                        </ul>
+                        <div class="text-center">{!! $comments->render() !!}</div>
+                    </div>
                     <div role="tabpanel" class="tab-pane" id="star">...</div>
                     <div role="tabpanel" class="tab-pane" id="atme">...</div>
                 </div>

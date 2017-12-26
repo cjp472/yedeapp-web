@@ -54,7 +54,7 @@
                             <div class="comment-content">{{ $comment->body }}</div>
                             <div class="comment-date">{{ $comment->updated_at->diffForHumans() }}</div>
 
-                            @if($comment->sub)
+                            {{--  @if($comment->sub)
                                 <div class="media reply">
                                     <div class="media-body">
                                         <div class="media-heading">
@@ -65,7 +65,7 @@
                                         <div class="comment-date">{{ $comment->sub->updated_at->diffForHumans() }}</div>
                                     </div>
                                 </div>
-                            @endif
+                            @endif  --}}
                         </div>
                     </li>
                 @empty

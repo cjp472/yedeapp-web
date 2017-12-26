@@ -8661,6 +8661,18 @@ body {
   padding: 15px;
 }
 
+.user-show-page .user-tabs .panel-body .tab-content .tab-pane > .item-list {
+  margin: 0;
+  padding: 0;
+}
+
+.user-show-page .user-tabs .panel-body .tab-content .tab-pane > .item-list li {
+  margin: 0.5em auto;
+  padding: 0.5em 0;
+  list-style: none;
+  border-bottom: #ddd 1px solid;
+}
+
 /* User edit page */
 
 .user-edit-page .panel-body .img-thumbnail,
