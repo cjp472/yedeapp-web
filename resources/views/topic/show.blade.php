@@ -13,7 +13,7 @@
         </div>
 
         <div class="body">
-            <div class="content">{{ $topic->body }}</div>
+            <div class="content">{!! $topic->body !!}</div>
         </div>
 
         <div class="sns-share">
@@ -22,8 +22,12 @@
         </div>
 
         <div class="prev-and-next clearfix">
-            <a href="{{ $prev->link() }}" class="btn btn-default pull-left prev" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $prev->title }}"><i class="glyphicon glyphicon-chevron-left"></i> 上一节</a>
-            <a href="{{ $next->link() }}" class="btn btn-default pull-right next" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $next->title }}">下一节 <i class="glyphicon glyphicon-chevron-right"></i></a>
+            @if ($prev)
+                <a href="{{ $prev->link() }}" class="btn btn-default pull-left prev" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $prev->title }}"><i class="glyphicon glyphicon-chevron-left"></i> 上一节</a>    
+            @endif
+            @if ($next)
+                <a href="{{ $next->link() }}" class="btn btn-default pull-right next" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $next->title }}">下一节 <i class="glyphicon glyphicon-chevron-right"></i></a>
+            @endif
         </div>
 
     </div>

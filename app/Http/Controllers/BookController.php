@@ -29,4 +29,28 @@ class BookController extends Controller
         return view('book.show', compact('book'));
     }
 
+    /**
+     * Creating a book.
+     *
+     * @param  App\Models\Book  $book
+     * @return View
+     */
+    public function create(Book $book)
+	{
+		return view('book.create_and_edit', compact('book'));
+	}
+
+    /**
+     * Editing a book.
+     *
+     * @param  App\Models\Book  $book
+     * @return View
+     */
+    public function edit(Book $book)
+    {
+        $this->authorize('update', $user);
+        
+        return view('book.edit', compact('book'));
+    }
+
 }

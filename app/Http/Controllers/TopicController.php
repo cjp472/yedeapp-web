@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use App\Models\Book;
+use App\Models\Chapter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
+use Auth;
 
 class TopicController extends Controller
 {
@@ -47,35 +49,45 @@ class TopicController extends Controller
 		}
 
 		// Get previous topic and next topic
-		$prev = Topic::where('id', '<', $topic->id)->orderBy('id', 'desc')->first();
-		$next = Topic::where('id', '>', $topic->id)->orderBy('id', 'asc')->first();
+		$prev = Topic::where('id', '<', $topic->id)->where('book_id', $topic->book_id)->where('chapter_id', $topic->chapter_id)->orderBy('id', 'desc')->first();
+		$next = Topic::where('id', '>', $topic->id)->where('book_id', $topic->book_id)->where('chapter_id', $topic->chapter_id)->orderBy('id', 'asc')->first();
 
 		// Get comments and load user table to prevent N+1 problem.
-		$comments = $topic
-					->comments()
-					->where('parent_id', null)
-					->orderBy('star', 'desc')
-					->orderBy('updated_at', 'desc')
-					->get()
-					->load('user');
+		$comments = $topic->comments()->where('parent_id', null)->orderBy('star', 'desc')->orderBy('updated_at', 'desc')->get()->load('user');
 		// Get author replies
-		$replies = $topic
-					->comments()
-					->where('parent_id', '>', 0)
-					->get();
+		$replies = $topic->comments()->where('parent_id', '>', 0)->get();
 
         return view('topic.show', compact('topic', 'comments', 'replies', 'prev', 'next'));
     }
 
+	/**
+     * Create a new topic ui.
+     *
+     * @param  App\Models\Topic  $topic
+     * @return View
+     */
 	public function create(Topic $topic)
 	{
-		return view('topic.create_and_edit', compact('topic'));
+		$books = Book::all();
+		$chapters = Chapter::all();
+
+		return view('topic.create_and_edit', compact('books', 'chapters', 'topic'));
 	}
 
-	public function store(TopicRequest $request)
+	/**
+     * Store a new topic.
+     *
+     * @param  App\Http\Requests\TopicRequest  $request
+	 * @param  App\Models\Topic  $topic
+     * @return void
+     */
+	public function store(TopicRequest $request, Topic $topic)
 	{
-		$topic = Topic::create($request->all());
-		return redirect()->route($topic->link())->with('message', 'Created successfully.');
+		$topic->fill($request->all());
+		$topic->user_id = Auth::id();
+		$topic->save();
+
+		return redirect($topic->link())->with('message', '新建成功');
 	}
 
 	public function edit(Topic $topic)
@@ -89,7 +101,7 @@ class TopicController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route($topic->link())->with('message', 'Updated successfully.');
+		return redirect($topic->link())->with('message', 'Updated successfully.');
 	}
 
 	public function destroy(Topic $topic)

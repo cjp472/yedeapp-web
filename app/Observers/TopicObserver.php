@@ -15,7 +15,7 @@ class TopicObserver
         // XSS filtering
         $topic->body = clean($topic->body, 'user_topic_body');
 
-        $topic->desc = make_excerpt($topic->body);
+        $topic->desc = make_desc($topic->body);
 
         if (!$topic->slug) {
             $topic->slug = app(SlugTranslateHandler::class)->translate($topic->title);

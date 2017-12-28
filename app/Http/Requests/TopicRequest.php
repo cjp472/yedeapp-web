@@ -10,17 +10,15 @@ class TopicRequest extends Request
         {
             // CREATE
             case 'POST':
-            {
-                return [
-                    // CREATE ROLES
-                ];
-            }
             // UPDATE
             case 'PUT':
             case 'PATCH':
             {
                 return [
-                    // UPDATE ROLES
+                    'title'     => 'required|min:2',
+                    'body'      => 'required|min:10',
+                    'book_id'   => 'required|numeric',
+                    'chapter_id'=> 'required|numeric',
                 ];
             }
             case 'GET':
@@ -35,7 +33,10 @@ class TopicRequest extends Request
     public function messages()
     {
         return [
-            // Validation messages
+            'title.required' => '请输入标题',
+            'body.required' => '请输入正文',
+            'title.min' => '标题不少于 2 个字符',
+            'body.min'  => '正文不少于 10 个字符',
         ];
     }
 }
