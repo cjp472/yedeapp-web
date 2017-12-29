@@ -8356,10 +8356,6 @@ button.close {
   }
 }
 
-/* Mixins */
-
-/* Universal */
-
 body {
   font-family: "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
 }
@@ -8367,8 +8363,6 @@ body {
 label {
   font-weight: normal;
 }
-
-/* Common */
 
 img.captcha {
   margin-bottom: 0px;
@@ -8436,8 +8430,6 @@ img.captcha {
   margin-bottom: 5px;
 }
 
-/* Header */
-
 .navbar-static-top {
   border-color: #e7e7e7;
   background-color: #fff;
@@ -8461,8 +8453,6 @@ img.captcha {
   margin-right: 8px;
 }
 
-/* Sticky footer styles */
-
 html {
   position: relative;
   min-height: 100%;
@@ -8479,7 +8469,6 @@ body {
   border-top: #ddd 1px solid;
   -webkit-box-shadow: -1px 1px 3px 0 rgba(0, 34, 77, 0.1);
           box-shadow: -1px 1px 3px 0 rgba(0, 34, 77, 0.1);
-  /* Set the fixed height of the footer */
   height: 60px;
   background-color: #fff;
 }
@@ -8498,8 +8487,6 @@ body {
   color: inherit;
 }
 
-/* Welcome page */
-
 .welcome-page {
   margin-top: 6%;
 }
@@ -8516,8 +8503,6 @@ body {
   -webkit-box-shadow: 0px 1px 2px 0px rgba(101, 129, 156, 0.08);
           box-shadow: 0px 1px 2px 0px rgba(101, 129, 156, 0.08);
 }
-
-/* Course show page */
 
 .course-show-page .course-detail {
   margin-bottom: 20px;
@@ -8561,8 +8546,6 @@ body {
   font-size: 0.5em;
 }
 
-/* Course edit page */
-
 .course-edit-page .panel-body .chapters .form-control {
   width: 90%;
 }
@@ -8571,13 +8554,6 @@ body {
   width: 10%;
   padding-top: 6px;
   text-align: center;
-}
-
-/* Topic show page */
-
-.topic-show-page {
-  /* Part 1: topic detail */
-  /* Part 2: topic comments */
 }
 
 .topic-show-page .topic-detail {
@@ -8682,8 +8658,6 @@ body {
   color: #999;
 }
 
-/* Login page */
-
 .login-page .login-panel {
   margin-top: 6%;
 }
@@ -8722,8 +8696,6 @@ body {
 .login-page .login-panel .panel-body .tab-content {
   margin: 30px 0px 0px;
 }
-
-/* User profile */
 
 .user-show-page .user-info .img-thumbnail {
   margin-bottom: 0px;
@@ -8770,8 +8742,6 @@ body {
   list-style: none;
   border-bottom: #ddd 1px solid;
 }
-
-/* User edit page */
 
 .user-edit-page .panel-body .img-thumbnail,
 .user-edit-page #avatar-field {
