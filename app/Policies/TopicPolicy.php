@@ -7,14 +7,27 @@ use App\Models\Topic;
 
 class TopicPolicy extends Policy
 {
-    public function update(User $user, Topic $topic)
+    /**
+     * Check if the user is the owner of the topic before updating.
+     * 
+     * @param  App\Models\User  $currentUser
+     * @param  App\Models\Topic  $topic
+     * @return boolean
+     */
+    public function update(User $currentUser, Topic $topic)
     {
-        // return $topic->user_id == $user->id;
-        return true;
+        return $currentUser->id === $topic->user_id;
     }
 
-    public function destroy(User $user, Topic $topic)
+    /**
+     * Check if the user is the owner of the topic before deleting.
+     * 
+     * @param  App\Models\User  $currentUser
+     * @param  App\Models\Topic  $topic
+     * @return boolean
+     */
+    public function destroy(User $currentUseruser, Topic $topic)
     {
-        return true;
+        return $currentUser->id === $topic->user_id;
     }
 }

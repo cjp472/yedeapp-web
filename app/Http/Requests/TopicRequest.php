@@ -17,7 +17,7 @@ class TopicRequest extends Request
                 return [
                     'title'     => 'required|min:2',
                     'body'      => 'required|min:10',
-                    'book_id'   => 'required|numeric',
+                    'course_id'   => 'required|numeric',
                     'chapter_id'=> 'required|numeric',
                 ];
             }

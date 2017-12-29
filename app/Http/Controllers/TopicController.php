@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topic;
-use App\Models\Book;
+use App\Models\Course;
 use App\Models\Chapter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,7 +23,7 @@ class TopicController extends Controller
     }
 
 	/**
-     * Book's topics page with chapters.
+     * Course's topics page with chapters.
      *
      * @return View
      */
@@ -37,20 +37,20 @@ class TopicController extends Controller
      * A topic detail page.
      *
 	 * @param  Illuminate\Http\Request $request
-	 * @param  App\Models\Book  $bookslug
+	 * @param  App\Models\Course  $courseslug
      * @param  App\Models\Topic  $topic
      * @return View
      */
-    public function show(Request $request, Book $book, Topic $topic)
+    public function show(Request $request, Course $course, Topic $topic)
     {
 		// Redirect to slug link with http code 301.
 		if ( !empty($topic->slug) && $topic->slug != $request->slug ) {
-			return redirect($topic->link($book->slug), 301);
+			return redirect($topic->link($course->slug), 301);
 		}
 
 		// Get previous topic and next topic
-		$prev = Topic::where('id', '<', $topic->id)->where('book_id', $topic->book_id)->where('chapter_id', $topic->chapter_id)->orderBy('id', 'desc')->first();
-		$next = Topic::where('id', '>', $topic->id)->where('book_id', $topic->book_id)->where('chapter_id', $topic->chapter_id)->orderBy('id', 'asc')->first();
+		$prev = Topic::where('id', '<', $topic->id)->where('course_id', $topic->course_id)->where('chapter_id', $topic->chapter_id)->orderBy('id', 'desc')->first();
+		$next = Topic::where('id', '>', $topic->id)->where('course_id', $topic->course_id)->where('chapter_id', $topic->chapter_id)->orderBy('id', 'asc')->first();
 
 		// Get comments and load user table to prevent N+1 problem.
 		$comments = $topic->comments()->where('parent_id', null)->orderBy('star', 'desc')->orderBy('updated_at', 'desc')->get()->load('user');
@@ -61,21 +61,21 @@ class TopicController extends Controller
     }
 
 	/**
-     * Create a new topic ui.
+     * Topic Creating UI.
      *
      * @param  App\Models\Topic  $topic
      * @return View
      */
 	public function create(Topic $topic)
 	{
-		$books = Book::all();
+		$courses = Course::all();
 		$chapters = Chapter::all();
 
-		return view('topic.create_and_edit', compact('books', 'chapters', 'topic'));
+		return view('topic.create_and_edit', compact('courses', 'chapters', 'topic'));
 	}
 
 	/**
-     * Store a new topic.
+     * Store a new topic to db.
      *
      * @param  App\Http\Requests\TopicRequest  $request
 	 * @param  App\Models\Topic  $topic
@@ -87,21 +87,38 @@ class TopicController extends Controller
 		$topic->user_id = Auth::id();
 		$topic->save();
 
-		return redirect($topic->link())->with('message', '新建成功');
+		return redirect($topic->link())->with('message', '创建成功');
 	}
 
+	/**
+     * Topic Editing UI.
+     *
+     * @param  App\Models\Topic  $topic
+     * @return View
+     */
 	public function edit(Topic $topic)
 	{
-        $this->authorize('update', $topic);
-		return view('topic.create_and_edit', compact('topic'));
+		$this->authorize('update', $topic);
+		
+		$courses = Course::all();
+		$chapters = Chapter::all();
+
+		return view('topic.create_and_edit', compact('courses', 'chapters', 'topic'));
 	}
 
+	/**
+     * Updating a topic.
+     *
+     * @param  App\Http\Requests\TopicRequest  $request
+	 * @param  App\Models\Topic  $topic
+     * @return void
+     */
 	public function update(TopicRequest $request, Topic $topic)
 	{
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect($topic->link())->with('message', 'Updated successfully.');
+		return redirect($topic->link())->with('message', '更新成功');
 	}
 
 	public function destroy(Topic $topic)

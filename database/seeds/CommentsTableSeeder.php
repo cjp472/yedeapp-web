@@ -14,13 +14,10 @@ class CommentsTableSeeder extends Seeder
      */
     public function run()
     {
-        // Get all users' id.
-        $user_ids = User::all()->pluck('id')->toArray();
-
-        // Get all topics' id.
-        $topic_ids = Topic::all()->pluck('id')->toArray();
-
         $faker = app(Faker\Generator::class);
+
+        $user_ids = User::all()->pluck('id')->toArray();
+        $topic_ids = Topic::all()->pluck('id')->toArray();
 
         $comments = factory(Comment::class)
         ->times(2000)

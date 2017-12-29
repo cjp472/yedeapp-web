@@ -3,8 +3,7 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Models\Comment::class, function (Faker $faker) {
-    $sentence = $faker->sentence();
-
+    
     // Any time in this month
     $updated_at = $faker->dateTimeThisMonth();
 

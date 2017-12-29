@@ -5,12 +5,12 @@ namespace App\Models;
 class Topic extends Model
 {
     protected $fillable = [
-        'title', 'body', 'user_id', 'chapter_id', 'book_id', 'comment_count', 'view_count', 'order', 'desc', 'slug'
+        'title', 'body', 'user_id', 'chapter_id', 'course_id', 'comment_count', 'view_count', 'order', 'free', 'desc', 'slug'
     ];
 
-    public function book()
+    public function course()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Course::class);
     }
 
     public function chapter()
@@ -28,14 +28,14 @@ class Topic extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function link($bookslug = '')
+    public function link($courseslug = '')
     {
-        // Provide a $bookslug param in avoiding query database multi times.
-        if (!$bookslug) {
-            $bookslug = $this->book->slug;
+        // Provide a $courseslug param in avoiding query database multi times.
+        if (!$courseslug) {
+            $courseslug = $this->course->slug;
         }
 
         // Inject parameters according to the topic.show route's order
-        return route('topic.show', [$bookslug, $this->id, $this->slug]);
+        return route('topic.show', [$courseslug, $this->id, $this->slug]);
     }
 }

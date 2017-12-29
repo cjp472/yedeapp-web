@@ -4,20 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
+class Course extends Model
 {
     protected $fillable = [
-        'title', 'brief', 'preface'
+        'title', 'slug', 'user_id', 'cover', 'price', 'intro', 'introduction', 'chapters'
     ];
-
-    public function chapters()
-    {
-        return $this->hasMany(Chapter::class);
-    }
 
     public function topics()
     {
-        return $this->hasManyThrough(Topic::class, Chapter::class);
+        return $this->hasMany(Topic::class);
     }
 
     public function getRouteKeyName()
