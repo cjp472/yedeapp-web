@@ -24,6 +24,11 @@ class SeedCoursesData extends Migration
                 'name' => '第2章 编程技术到底难在哪里？',
                 'topics' => [4,5,6],
                 'order' => 2
+            ],[
+                'id' => 3,
+                'name' => '第3章 开启新世界？',
+                'topics' => [13,14,15],
+                'order' => 3
             ]
         ];
 

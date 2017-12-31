@@ -29,7 +29,7 @@ class CourseRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    'title' => 'required|between:1,30|unique:courses',
+                    'name' => 'required|between:1,30|unique:courses',
                     'slug' => 'required|between:1,50|regex:/^[A-Za-z0-9\-]+$/|unique:courses',
                     'price' => 'required|numeric',
                     'intro' => 'required|min:10',
@@ -41,7 +41,7 @@ class CourseRequest extends FormRequest
             case 'PATCH':
             {
                 return [
-                    'title' => 'required|between:1,30',
+                    'name' => 'required|between:1,30',
                     'slug' => 'required|between:1,50|regex:/^[A-Za-z0-9\-]+$/',
                     'price' => 'required|numeric',
                     'intro' => 'required|min:10',
@@ -65,9 +65,9 @@ class CourseRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => '请输入课程名',
-            'title.between' => '课程名应介于 1 ~ 30 个字符',
-            'title.unique' => '此课程名已存在，请重新填写',
+            'name.required' => '请输入课程名',
+            'name.between' => '课程名应介于 1 ~ 30 个字符',
+            'name.unique' => '此课程名已存在，请重新填写',
             'slug.required' => '请输入课程英文名',
             'slug.between' => '课程英文名应介于 1 ~ 50 个字符',
             'slug.unique' => '此课程英文名已存在，请重新填写',

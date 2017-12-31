@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use App\Models\Course;
-use App\Models\Chapter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
@@ -54,7 +53,6 @@ class TopicController extends Controller
 
 		// Get comments and load user table to prevent N+1 problem.
 		$comments = $topic->comments()->where('parent_id', null)->orderBy('star', 'desc')->orderBy('updated_at', 'desc')->get()->load('user');
-		// Get author replies
 		$replies = $topic->comments()->where('parent_id', '>', 0)->get();
 
         return view('topic.show', compact('topic', 'comments', 'replies', 'prev', 'next'));
@@ -69,9 +67,8 @@ class TopicController extends Controller
 	public function create(Topic $topic)
 	{
 		$courses = Course::all();
-		$chapters = Chapter::all();
 
-		return view('topic.create_and_edit', compact('courses', 'chapters', 'topic'));
+		return view('topic.create_and_edit', compact('courses', 'topic'));
 	}
 
 	/**
@@ -101,9 +98,8 @@ class TopicController extends Controller
 		$this->authorize('update', $topic);
 		
 		$courses = Course::all();
-		$chapters = Chapter::all();
 
-		return view('topic.create_and_edit', compact('courses', 'chapters', 'topic'));
+		return view('topic.create_and_edit', compact('courses', 'topic'));
 	}
 
 	/**

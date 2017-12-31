@@ -8546,14 +8546,17 @@ body {
   font-size: 0.5em;
 }
 
+.course-create-page .panel-body .chapters .form-control,
 .course-edit-page .panel-body .chapters .form-control {
   width: 90%;
 }
 
+.course-create-page .panel-body .chapters .button,
 .course-edit-page .panel-body .chapters .button {
   width: 10%;
   padding-top: 6px;
   text-align: center;
+  cursor: pointer;
 }
 
 .topic-show-page .topic-detail {

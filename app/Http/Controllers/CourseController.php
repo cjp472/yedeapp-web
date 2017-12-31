@@ -11,6 +11,13 @@ use Auth;
 class CourseController extends Controller
 {
     /**
+     * Upload image's restraint.
+     *
+     * @var integer
+     */
+    protected $cover_max_width = 800;
+    
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -46,16 +53,28 @@ class CourseController extends Controller
     /**
      * Store a new course to db.
      *
-     * @param  App\Http\Requests\TopicRequest  $request
-	 * @param  App\Models\Topic  $topic
+     * @param  App\Http\Requests\CourseRequest  $request
+     * @param  App\Handlers\ImageUploadHandler  $uploader
+	 * @param  App\Models\Course  $course
      * @return void
      */
-	public function store(CourseRequest $request, Course $course)
+	public function store(CourseRequest $request, ImageUploadHandler $uploader, Course $course)
 	{
-		$course->fill($request->all());
-		$course->user_id = Auth::id();
-		$course->save();
+        $course->fill($request->all());
 
+        $cover_max_width = $this->cover_max_width;
+
+        if ($request->cover) {
+            $result = $uploader->save($request->cover, 'courses', Auth::id(), $cover_max_width);
+            if ($result) {
+                $course->cover = $result['path'];
+            }
+        }
+
+        $course->user_id = Auth::id();
+
+        $course->save();
+        
 		return redirect()->route('course.show', $course->slug)->with('message', '创建成功');
 	}
 
@@ -86,7 +105,7 @@ class CourseController extends Controller
         
         $data = $request->all();
 
-        $cover_max_width = 800;
+        $cover_max_width = $this->cover_max_width;
 
         if ($request->cover) {
             $result = $uploader->save($request->cover, 'courses', Auth::id(), $cover_max_width);
@@ -98,6 +117,6 @@ class CourseController extends Controller
 		$course->update($data);
 
 		return redirect()->route('course.show', $course->slug)->with('message', '更新成功');
-	}
+    }
 
 }

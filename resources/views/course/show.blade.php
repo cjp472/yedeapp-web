@@ -19,28 +19,28 @@
     </div>
     <div class="col-md-12 body">
         <div class="chapters">
-            <dl>
-                @foreach($chapters as $chapter)
-                    <dt>{{ $chapter->name }}</dt>
-
-                    @foreach($course->topics as $topic)
-                        @if($topic->chapter_id === $chapter->id)
-                            <dd>
-                                <a href="{{ $topic->link($course->slug) }}">
-                                    @if($topic->free)
-                                        <span class="label label-primary">免费试读</span>    
+            @if ($chapters)
+                <dl>
+                    @foreach($chapters as $chapter)
+                        <dt>{{ $chapter->name }}</dt>
+                        @foreach($course->topics as $topic)
+                            @if($topic->chapter_id === $chapter->id)
+                                <dd>
+                                    <a href="{{ $topic->link($course->slug) }}">
+                                        @if($topic->free)
+                                            <span class="label label-primary">免费试读</span>    
+                                        @endif
+                                        {{ $topic->title }}
+                                    </a>
+                                    @if(!$topic->free)
+                                        <span class="pull-right"><i class="glyphicon glyphicon-lock"></i></span>
                                     @endif
-                                    {{ $topic->title }}
-                                </a>
-                                @if(!$topic->free)
-                                    <span class="pull-right"><i class="glyphicon glyphicon-lock"></i></span>
-                                @endif
-                            </dd>
-                        @endif
+                                </dd>
+                            @endif
+                        @endforeach
                     @endforeach
-
-                @endforeach
-            </dl>
+                </dl>
+            @endif
         </div>
     </div>
 </div>

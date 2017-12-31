@@ -168,12 +168,12 @@ body { margin-bottom: 60px; }
     }
 }
 
-// Course edit page
-.course-edit-page {
+// Course create and edit page
+.course-create-page, .course-edit-page {
     .panel-body {
         .chapters {
             .form-control { width: 90%; }
-            .button { width: 10%; padding-top: 6px; text-align: center; }
+            .button { width: 10%; padding-top: 6px; text-align: center; cursor: pointer; }
         }
     }
 }
