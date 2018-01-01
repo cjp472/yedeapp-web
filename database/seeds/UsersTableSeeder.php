@@ -43,5 +43,17 @@ class UsersTableSeeder extends Seeder
         $user->phone = '18129835206';
         $user->avatar = 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200';
         $user->save();
+
+        // Roles and permissions
+        $user->assignRole('Superadmin');
+
+        $user = User::find(2);
+        $user->assignRole('Admin');
+
+        $user = User::find(3);
+        $user->assignRole('Writer');
+
+        $user = User::find(4);
+        $user->assignRole('Subscriber');
     }
 }

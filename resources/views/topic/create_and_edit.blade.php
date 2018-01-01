@@ -30,7 +30,7 @@
                 </div> 
                 <div class="form-group">
                     <label>正文</label>
-                    <textarea class="form-control" name="body" id="body_field" rows="10" required>{{ old('body', $topic->body) }}</textarea>
+                    <textarea class="form-control" name="body" id="editor" rows="10" required>{{ old('body', $topic->body) }}</textarea>
                 </div>
                 <div class="form-group">
                     <label>课程</label>
