@@ -3,12 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
+use Auth;
 
 class CommentController extends Controller
 {
+	/**
+     * Store a Comment.
+     *
+     * @param  App\Http\Requests\CommentRequest  $request
+	 * @param  App\Models\Comment  $comment
+     * @return void
+     */
+	public function store(CommentRequest $request, Comment $comment)
+	{
+		$comment->fill($request->all());
+		$comment->user_id = Auth::id();
+		$comment->save();
+
+		return redirect($comment->topic->link());
+	}
+
     /**
-     * Delete a topic.
+     * Delete a Comment.
      *
      * @param  App\Models\Comment  $comment
      * @return void

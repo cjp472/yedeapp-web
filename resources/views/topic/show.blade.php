@@ -54,7 +54,7 @@
     
         <div class="head clearfix">
             <div class="heading pull-left">留言精选</div>
-            <div class="pull-right"><a href="#write_comment"><i class="glyphicon glyphicon-pencil"></i> 写留言</a></div>
+            <div class="pull-right"><a id="jump_to_editor"><i class="glyphicon glyphicon-pencil"></i> 写留言</a></div>
         </div>
 
         <div class="body">
@@ -129,8 +129,13 @@
                             <img class="media-object img-circle" width="50px" src="{{ Auth::user()->avatar }}">
                         </div>
                         <div class="media-body">
-                            <textarea class="editor" placeholder="请不要发表不友善和负能量言论"></textarea>
-                            <button class="btn btn-primary btn-wider-look" type="submit">提交</button>
+                            @include('common.error')
+                            <form id="comment_form" action="{{ route('comment.store') }}" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+                                <textarea name="body" class="editor" placeholder="理性留言的你可以说是很有素质了" required></textarea>
+                                <button class="btn btn-primary btn-wider-look" type="submit">提交</button><span class="submit-tip">（快捷键 Ctrl + Enter）</span>
+                            </form>
                         </div>
                     </li>
                 @endguest
@@ -140,4 +145,26 @@
 
     </div>
 </div>
+@stop
+
+@section('scripts')
+<script>
+$(document).ready(function(){
+    $editor = $('#write_comment textarea');
+    $jumper = $('#jump_to_editor');
+    $form = $('#comment_form');
+
+    // Jump to comment editor
+    $jumper.click(function(){
+        $editor.focus();
+    })
+
+    // Ctrl + Enter submit
+    $editor.keydown(function(event){
+        if (event.ctrlKey && event.keyCode == 13) {
+            $form.submit();
+        }
+    });
+});
+</script>
 @stop

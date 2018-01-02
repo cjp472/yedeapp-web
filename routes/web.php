@@ -41,4 +41,4 @@ Route::get('course/{course}/topic/{topic}/{slug?}', 'TopicController@show')->nam
 Route::post('upload_image', 'TopicController@uploadImage')->name('topic.upload_image');
 
 // Comment Routes
-Route::resource('comment', 'CommentController', ['only' => ['create', 'store', 'destroy']]);
+Route::resource('comment', 'CommentController', ['only' => ['store', 'destroy']]);

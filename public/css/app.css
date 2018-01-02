@@ -8624,6 +8624,10 @@ body {
   margin-bottom: 1em;
 }
 
+.topic-show-page .topic-comments .head #jump_to_editor {
+  cursor: pointer;
+}
+
 .topic-show-page .topic-comments .body .comments .comment {
   margin-top: 30px;
 }
@@ -8658,6 +8662,11 @@ body {
   border-radius: 3px;
   resize: vertical;
   outline: none;
+}
+
+.topic-show-page .topic-comments .body .comments .write .submit-tip {
+  margin-left: 10px;
+  color: #999;
 }
 
 .topic-show-page .topic-comments .body .comments .author .vline {

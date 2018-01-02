@@ -222,7 +222,10 @@ body { margin-bottom: 60px; }
         @include page-content-container;
         padding: 1em 0 2em;
 
-        .head { margin-bottom: 1em; }
+        .head {
+            margin-bottom: 1em;
+            #jump_to_editor { cursor: pointer; }
+        }
 
         .body {
             .comments {
@@ -247,6 +250,7 @@ body { margin-bottom: 60px; }
                         resize: vertical;
                         outline: none;
                     }
+                    .submit-tip { margin-left: 10px; color: #999; }
                 }
 
                 .author {
