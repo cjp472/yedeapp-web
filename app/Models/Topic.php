@@ -13,11 +13,6 @@ class Topic extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function chapter()
-    {
-        return $this->belongsTo(Chapter::class);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -28,14 +23,14 @@ class Topic extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function link($courseslug = '')
+    public function link($courseSlug = '')
     {
-        // Provide a $courseslug param in avoiding query database multi times.
-        if (!$courseslug) {
-            $courseslug = $this->course->slug;
+        // Provide a $courseSlug param in avoiding query database multi times.
+        if (!$courseSlug) {
+            $courseSlug = $this->course->slug;
         }
 
         // Inject parameters according to the topic.show route's order
-        return route('topic.show', [$courseslug, $this->id, $this->slug]);
+        return route('topic.show', [$courseSlug, $this->id, $this->slug]);
     }
 }

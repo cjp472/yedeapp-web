@@ -16,7 +16,7 @@ class TopicPolicy extends Policy
      */
     public function update(User $currentUser, Topic $topic)
     {
-        return $currentUser->id === $topic->user_id;
+        return $currentUser->isAuthorOf($topic);
     }
 
     /**
@@ -26,8 +26,8 @@ class TopicPolicy extends Policy
      * @param  App\Models\Topic  $topic
      * @return boolean
      */
-    public function destroy(User $currentUseruser, Topic $topic)
+    public function destroy(User $currentUser, Topic $topic)
     {
-        return $currentUser->id === $topic->user_id;
+        return $currentUser->isAuthorOf($topic);
     }
 }

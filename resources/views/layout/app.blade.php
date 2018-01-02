@@ -27,5 +27,10 @@
     {{-- Scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
+
+    {{-- Sudosu--}}
+    @if (app()->isLocal())
+        @include('sudosu::user-selector')
+    @endif
 </body>
 </html>

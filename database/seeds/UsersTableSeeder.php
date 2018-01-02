@@ -43,10 +43,9 @@ class UsersTableSeeder extends Seeder
         $user->phone = '18129835206';
         $user->avatar = 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200';
         $user->save();
+        $user->assignRole('Superadmin');        
 
-        // Roles and permissions
-        $user->assignRole('Superadmin');
-
+        // Remake user 2 to 4 roles
         $user = User::find(2);
         $user->assignRole('Admin');
 

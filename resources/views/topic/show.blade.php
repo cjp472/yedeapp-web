@@ -9,7 +9,23 @@
 
         <div class="head clearfix">
             <h1 class="pull-left">{{ $topic->title }}</h1>
-            <div class="pull-right favorite"><a href="" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-heart"></i> 收藏</a></div>
+            <div class="pull-right">
+                <div class="head-button">
+                    <a href="#" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-heart"></i> 收藏</a>
+                </div>
+                @can('update', $topic)
+                    <div class="head-button">
+                        <a href="{{ route('topic.edit', $topic->id) }}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-edit"></i> 编辑</a>
+                    </div>
+                    <div class="head-button">
+                        <form action="{{ route('topic.destroy', $topic->id) }}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-trash"></i> 删除</button>
+                        </form>
+                    </div>
+                @endcan
+            </div>
         </div>
 
         <div class="body">
@@ -53,7 +69,20 @@
                         <div class="media-body">
                             <div class="media-heading">
                                 <span class="author">{{ $comment->user->name }}</span>
-                                <a class="pull-right" href=""><i class="glyphicon glyphicon-thumbs-up"></i> {{ $comment->star }}</a>
+                                <div class="pull-right">
+                                    @can('destroy', $comment)
+                                        <div class="head-button">
+                                            <form action="{{ route('comment.destroy', $comment->id) }}" method="post">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-link btn-md"><i class="glyphicon glyphicon-trash"></i> 删除</button>
+                                            </form>
+                                        </div>
+                                    @endcan
+                                    <div class="head-button">
+                                        <button type="button" class="btn btn-link btn-md"><i class="glyphicon glyphicon-thumbs-up"></i> {{ $comment->star }}</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="comment-content">{{ $comment->body }}</div>
                             <div class="comment-date">{{ $comment->updated_at->diffForHumans() }}</div>
@@ -64,7 +93,20 @@
                                         <div class="media-body">
                                             <div class="media-heading">
                                                 <span class="author"><i class="vline"></i>作者回复</span>
-                                                <a class="pull-right" href=""><i class="glyphicon glyphicon-thumbs-up"></i> {{ $reply->star }}</a>
+                                                <div class="pull-right">
+                                                    @can('destroy', $comment)
+                                                        <div class="head-button">
+                                                            <form action="{{ route('comment.destroy', $reply->id) }}" method="post">
+                                                                {{ csrf_field() }}
+                                                                {{ method_field('DELETE') }}
+                                                                <button type="submit" class="btn btn-link btn-md"><i class="glyphicon glyphicon-trash"></i> 删除</button>
+                                                            </form>
+                                                        </div>
+                                                    @endcan
+                                                    <div class="head-button">
+                                                        <button type="button" class="btn btn-link btn-md"><i class="glyphicon glyphicon-thumbs-up"></i> {{ $reply->star }}</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="comment-content">{{ $reply->body }}</div>
                                             <div class="comment-date">{{ $reply->updated_at->diffForHumans() }}</div>

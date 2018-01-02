@@ -29,8 +29,16 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
+// User Routes
 Route::resource('user', 'UserController', ['only' => ['show', 'update', 'edit']]);
-Route::resource('course', 'CourseController', ['only' => ['show', 'create', 'store', 'update', 'edit']]);
-Route::resource('topic', 'TopicController', ['only' => ['create', 'store', 'update', 'edit', 'destroy']]);
 
+// Course Routes
+Route::resource('course', 'CourseController', ['only' => ['show', 'create', 'store', 'update', 'edit']]);
+
+// Topic Routes
+Route::resource('topic', 'TopicController', ['only' => ['create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('course/{course}/topic/{topic}/{slug?}', 'TopicController@show')->name('topic.show');
+Route::post('upload_image', 'TopicController@uploadImage')->name('topic.upload_image');
+
+// Comment Routes
+Route::resource('comment', 'CommentController', ['only' => ['create', 'store', 'destroy']]);

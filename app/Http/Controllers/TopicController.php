@@ -7,6 +7,7 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
+use App\Handlers\ImageUploadHandler;
 use Auth;
 
 class TopicController extends Controller
@@ -20,17 +21,6 @@ class TopicController extends Controller
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
-
-	/**
-     * Course's topics page with chapters.
-     *
-     * @return View
-     */
-	public function index()
-	{
-		$topics = Topic::all();
-		return view('topic.index', compact('topics'));
-	}
 
 	/**
      * A topic detail page.
@@ -111,17 +101,55 @@ class TopicController extends Controller
      */
 	public function update(TopicRequest $request, Topic $topic)
 	{
-		$this->authorize('update', $topic);
+        $this->authorize('update', $topic);
+        
 		$topic->update($request->all());
 
 		return redirect($topic->link())->with('message', '更新成功');
 	}
 
+	/**
+     * Upload images to server in simeditor.
+     *
+     * @param  App\Http\Requests\Request  $request
+	 * @param  App\Handlers\ImageUploadHandler  $uploader
+     * @return void
+     */
+	public function uploadImage(Request $request, ImageUploadHandler $uploader)
+    {
+        // Init return data
+        $data = [
+            'success' => false,
+            'msg' => '上传失败',
+            'file_path' => ''
+		];
+		
+        // Get upload file request and do upload
+        if ($file = $request->upload_file) {
+            // Save
+            $result = $uploader->save($request->upload_file, 'topics', \Auth::id(), 1024);
+            // If success
+            if ($result) {
+				$data['success'] = true;
+                $data['msg'] = "上传成功";
+                $data['file_path'] = $result['path'];
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * Delete a topic.
+     *
+     * @param  App\Models\Topic  $topic
+     * @return void
+     */
 	public function destroy(Topic $topic)
 	{
-		$this->authorize('destroy', $topic);
+        $this->authorize('destroy', $topic);
+        
 		$topic->delete();
 
-		return redirect()->route('topic.index')->with('message', 'Deleted successfully.');
+		return redirect()->route('course.show', $topic->course)->with('message', '删除成功');
 	}
 }

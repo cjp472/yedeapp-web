@@ -35,6 +35,13 @@
         .nav-tabs.nav-justified > .active > a:focus { border-bottom-color: #fff; }
     }
 }
+@mixin head-operators {
+    .head-button {
+        float: left;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+}
 
 // Universal
 body { font-family: "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif; }
@@ -183,13 +190,15 @@ body { margin-bottom: 60px; }
     // topic content
     .topic-detail {
         @include page-content-container;
+        padding: 1em;
 
         .head {
+            @include head-operators;
+
             border-bottom: #ddd 1px solid;
             line-height: 4em;
 
             h1 { font-size: 1.5em; }
-            .favorite { vertical-align: middle; }
         }
 
         .body {
@@ -217,7 +226,13 @@ body { margin-bottom: 60px; }
 
         .body {
             .comments {
-                .comment { margin-top: 30px; }
+                .comment {
+                    margin-top: 30px;
+                    .media-heading {
+                        @include head-operators;
+                        button { outline: none; }
+                    }
+                }
                 .reply { padding-top: 10px; border-top: #eee 1px solid; }
                 .write {
                     margin-top: 50px;

@@ -98,14 +98,17 @@ function initChaptersControl(chapterId) {
 }
 
 function reloadChapters(selector) {
-    var chapters = JSON.parse($(selector).find('option:selected').attr('data'));
-    // Init options when reload
-    $chapters.children('option').remove();
-
-    for (var i = 0; i < chapters.length; i++) {
-        var chapter = chapters[i];
-        $option = $('<option value="' + chapter.id + '">' + chapter.name + '</option>');    
-        $chapters.append($option);
+    var data = $(selector).find('option:selected').attr('data');
+    if (data) {
+        var chapters = JSON.parse(data);
+        // Init options when reload
+        $chapters.children('option').remove();
+    
+        for (var i = 0; i < chapters.length; i++) {
+            var chapter = chapters[i];
+            $option = $('<option value="' + chapter.id + '">' + chapter.name + '</option>');    
+            $chapters.append($option);
+        }
     }
 }
 
@@ -113,7 +116,36 @@ initControls();
 
 $(document).ready(function(){
     var editor = new Simditor({
-        textarea: $('#editor')
+        textarea: $('#editor'),
+        upload: {
+            url: '{{ route('topic.upload_image') }}',
+            params: { _token: '{{ csrf_token() }}' },
+            fileKey: 'upload_file',
+            connectionCount: 3,
+            leaveConfirm: '文件上传中，请勿关闭此页面。'
+        },
+        pasteImage: true,
+        tabIndent: true,
+        toolbar: [
+            'title',
+            'bold',
+            'italic',
+            'underline',
+            'strikethrough',
+            'fontScale',
+            'color',
+            'ol',
+            'ul',
+            'blockquote',
+            'code',
+            'table',
+            'link',
+            'image',
+            'hr',
+            'indent',
+            'outdent',
+            'alignment'
+        ]
     });
 })
 </script>
