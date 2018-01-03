@@ -38,4 +38,39 @@ class User extends Authenticatable
     {
         return $this->id == $model->user_id;
     }
+
+    /**
+     * Mutate user model's password attribute before saved into db.
+     *
+     * @param  string
+     * @return void
+     */
+    public function setPasswordAttribute($value)
+    {
+        // If value's length equal to 60, it has been bcrypted.
+        if (strlen($value) != 60) {
+            $value = bcrypt($value);
+        }
+
+        $this->attributes['password'] = $value;
+    }
+
+    /**
+     * Mutate user model's avatar attribute before saved into db.
+     *
+     * @param  string
+     * @return void
+     */
+    public function setAvatarAttribute($path)
+    {
+        // If the path isn't started with the "http" prefix,
+        // It must come from xa(admin), fixs this URL.
+        if (!starts_with($path, 'http')) {
+            $path = config('app.url') . '/uploads/images/avatars/' . $path;
+        }
+
+        $this->attributes['avatar'] = $path;
+    }
+
+
 }

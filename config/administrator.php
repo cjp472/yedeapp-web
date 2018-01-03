@@ -7,7 +7,7 @@ return array(
      *
      * @type string
      */
-    'uri' => 'xwin',
+    'uri' => 'xa',
 
     /*
      *  Domain for routing.
@@ -21,7 +21,7 @@ return array(
      *
      * @type string
      */
-    'title' => config('app.name'),
+    'title' => env('APP_NAME', 'Laravel'),
 
     /*
      * The path to your model config directory
@@ -59,8 +59,18 @@ return array(
      *	)
      */
     'menu' => [
-        '用户与权限' => [
+        '用户权限' => [
             'users',
+            'roles',
+            'permissions',
+        ],
+        '内容管理' => [
+            'courses',
+            'topics',
+            'comments',
+        ],
+        '站点管理' => [
+            'settings.site',
         ],
     ],
 
@@ -94,7 +104,7 @@ return array(
      *
      * @type string
      */
-    'home_page' => 'users',
+    'home_page' => 'topics',
 
     /*
      * The route to which the user will be taken when they click the "back to site" button
@@ -108,7 +118,7 @@ return array(
      *
      * @type string
      */
-    'login_path' => 'login',
+    'login_path' => 'permission-denied',
 
     /*
      * The logout path is the path where Administrator will send the user when they click the logout link

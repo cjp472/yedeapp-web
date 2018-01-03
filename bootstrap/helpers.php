@@ -23,3 +23,16 @@ function make_desc($value, $length = 200)
 
     return str_limit($desc, $length);
 }
+
+/**
+ * Make an <a></a> link.
+ *
+ * @param  string  $inner
+ * @param  string  $title
+ * @param  string  $href
+ * @param  string  $target
+ * @return string
+ */
+function make_link($inner, $href = '#', $title = '', $target = '_blank') {
+    return '<a href="'.$href.'" title="'.$title.'" target="'.$target.'">'.$inner.'</a>';
+}

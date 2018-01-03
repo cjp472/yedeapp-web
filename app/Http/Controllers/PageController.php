@@ -25,4 +25,20 @@ class PageController extends Controller
     {
         return view('pages.root');
     }
+
+    /**
+     * Permission denied page.
+     *
+     * @return View/Redirect
+     */
+    public function permissionDenied()
+    {
+        // If Auth::check() && Auth::user()->can('manage_contents'), redirect to admin panel (xa)
+        if (config('administrator.permission')()) {
+            return redirect(url(config('administrator.uri')), 302);
+        }
+
+        // Else
+        return view('pages.permission_denied');
+    }
 }

@@ -2307,8 +2307,8 @@ a {
 }
 #wrapper {
   font-family: 'Oxygen', sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 14px;
+  line-height: 40px;
   color: #333333;
 }
 #wrapper h2 {
@@ -2320,9 +2320,11 @@ a {
   margin-bottom: 5px;
 }
 #wrapper header {
-  background: #5a6064;
-  text-shadow: black 0 1px 0;
-  height: 34px;
+  background: #fff;
+  border-color: #e7e7e7;
+  box-shadow: 0 1px 3px 0 rgba(0, 34, 77, 0.1);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 34, 77, 0.1);
+  height: 35px;
   overflow: visible;
   position: relative;
   z-index: 900;
@@ -2334,25 +2336,24 @@ a {
 #wrapper header h1 {
   float: left;
   margin: 0;
-  border-right: 1px solid #334352;
+  border-right: 1px solid #f1f1f1;
 }
 #wrapper header h1 a {
   display: inline-block;
-  padding: 9px 12px 8px;
-  padding: 8px 15px 9px;
-  font-size: 19px;
-  border-right: 1px solid #555;
+  height: 40px;
+  line-height: 40px;
+  font-size: 22px;
 }
 #wrapper header h1 a:hover,
 #wrapper header h1 a.current {
-  background: #2F4050;
+  background: transparent;
 }
 #wrapper header h1 a:hover {
-  background: #2F4050;
+  background: transparent;
 }
 #wrapper header a,
 #wrapper header span {
-  color: #fff;
+  color: #666;
   display: inline-block;
   cursor: pointer;
 }
@@ -2474,40 +2475,43 @@ a {
 #wrapper header ul#lang_menu > li {
   display: inline-block;
   position: relative;
-  background: #2F4050;
+  background: #fff;
   margin-left: -3px;
 }
+/*
 #wrapper header ul#menu > li a,
-#wrapper header ul#menu > li span,
 #wrapper header ul#lang_menu > li a,
+*/
+#wrapper header ul#menu > li span,
 #wrapper header ul#lang_menu > li span {
-  padding: 9px 12px 8px;
+  padding: 0px 15px;
 }
 #wrapper header ul#menu > li ul,
 #wrapper header ul#lang_menu > li ul {
   position: absolute;
-  top: 35px;
+  top: 40px;
   left: 0;
   display: none;
-  background: #2F4050;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-top: 0px;
   -moz-border-bottom-right-radius: 2px;
   border-bottom-right-radius: 2px;
   -webkit-border-bottom-right-radius: 2px;
   -moz-border-bottom-left-radius: 2px;
   border-bottom-left-radius: 2px;
   -webkit-border-bottom-left-radius: 2px;
-  background-clip: padding-box;
 }
 #wrapper header ul#menu > li ul a,
 #wrapper header ul#lang_menu > li ul a {
   display: block;
   white-space: nowrap;
   overflow: hidden;
-  border-bottom: 1px solid #293846;
 }
 #wrapper header ul#menu > li ul a:hover,
 #wrapper header ul#lang_menu > li ul a:hover {
-  color: #fff;
+  color: #333;
+  background-color: #ddd;
 }
 #wrapper header ul#menu > li ul li:last-child a,
 #wrapper header ul#lang_menu > li ul li:last-child a {
@@ -2519,7 +2523,7 @@ a {
 }
 #wrapper header ul#menu > li ul li.menu.current,
 #wrapper header ul#lang_menu > li ul li.menu.current {
-  background: #2F4050;
+  background: #fff;
 }
 #wrapper header ul#menu > li ul li.menu ul,
 #wrapper header ul#lang_menu > li ul li.menu ul {
@@ -2531,7 +2535,7 @@ a {
 #wrapper header ul#menu > li:hover,
 #wrapper header ul#lang_menu > li.current,
 #wrapper header ul#lang_menu > li:hover {
-  background: #2F4050;
+  background: #fff;
 }
 #wrapper header ul#menu > li:first-child,
 #wrapper header ul#lang_menu > li:first-child {
@@ -2549,24 +2553,14 @@ a {
 }
 #wrapper header div#right_nav a#back_to_site {
   display: inline-block;
-  padding: 9px 12px 8px;
-  margin-left: -3px;
+  padding: 0 15px;
 }
 #wrapper header div#right_nav a#back_to_site:hover,
 #wrapper header div#right_nav a#back_to_site.current {
-  background: #444;
-  background: -moz-linear-gradient(top,#444 0%,#333 100%);
-  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#333),color-stop(100%,#333));
-  background: -webkit-linear-gradient(top,#444 0%,#333 100%);
-  background: -o-linear-gradient(top,#444 0%,#333 100%);
-  background: -ms-linear-gradient(top,#444 0%,#333 100%);
-  background: linear-gradient(top,#444 0%,#333 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#444444',endColorstr='#333333',GradientType=0);
+  background: #ddd;
 }
 #wrapper header div#right_nav a#logout {
   display: inline-block;
-  padding: 9px 12px 8px;
-  margin-left: -3px;
 }
 #wrapper header div#right_nav a#logout:hover,
 #wrapper header div#right_nav a#logout.current {

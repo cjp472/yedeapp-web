@@ -61,6 +61,7 @@
             <ul class="media-list comments"> 
                 @forelse($comments as $comment)
                     <li class="media comment">
+                        <a id="comment_{{ $comment->id }}">
                         <div class="media-left">
                             <a href="{{ route('user.show', $comment->user_id) }}">
                                 <img class="media-object img-circle" width="50px" src="{{ $comment->user->avatar }}">
@@ -90,6 +91,7 @@
                             @foreach ($replies as $reply)
                                 @if ($reply->parent_id == $comment->id)
                                     <div class="media reply">
+                                        <a id="comment_{{ $reply->id }}">
                                         <div class="media-body">
                                             <div class="media-heading">
                                                 <span class="author"><i class="vline"></i>作者回复</span>
