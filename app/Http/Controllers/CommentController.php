@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
-use App\Models\Comment;
+use App\Comment;
 use Auth;
 
 class CommentController extends Controller
@@ -13,7 +13,7 @@ class CommentController extends Controller
      * Store a Comment.
      *
      * @param  App\Http\Requests\CommentRequest  $request
-	 * @param  App\Models\Comment  $comment
+	 * @param  App\Comment  $comment
      * @return void
      */
 	public function store(CommentRequest $request, Comment $comment)
@@ -28,7 +28,7 @@ class CommentController extends Controller
     /**
      * Delete a Comment.
      *
-     * @param  App\Models\Comment  $comment
+     * @param  App\Comment  $comment
      * @return void
      */
 	public function destroy(Comment $comment)
@@ -43,7 +43,7 @@ class CommentController extends Controller
     /**
      * Vote or abstain a comment by a user.
      *
-     * @param  App\Models\Comment  $comment
+     * @param  App\Comment  $comment
      * @return void
      */
     public function vote(Comment $comment)

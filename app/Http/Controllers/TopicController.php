@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Topic;
-use App\Models\Course;
-use App\Models\Like;
+use App\Topic;
+use App\Course;
+use App\Like;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
@@ -28,8 +28,8 @@ class TopicController extends Controller
      * A topic detail page.
      *
 	 * @param  Illuminate\Http\Request $request
-	 * @param  App\Models\Course  $courseslug
-     * @param  App\Models\Topic  $topic
+	 * @param  App\Course  $courseslug
+     * @param  App\Topic  $topic
      * @return View
      */
     public function show(Request $request, Course $course, Topic $topic)
@@ -53,7 +53,7 @@ class TopicController extends Controller
 	/**
      * Topic Creating UI.
      *
-     * @param  App\Models\Topic  $topic
+     * @param  App\Topic  $topic
      * @return View
      */
 	public function create(Topic $topic)
@@ -67,7 +67,7 @@ class TopicController extends Controller
      * Store a new topic to db.
      *
      * @param  App\Http\Requests\TopicRequest  $request
-	 * @param  App\Models\Topic  $topic
+	 * @param  App\Topic  $topic
      * @return void
      */
 	public function store(TopicRequest $request, Topic $topic)
@@ -82,7 +82,7 @@ class TopicController extends Controller
 	/**
      * Topic Editing UI.
      *
-     * @param  App\Models\Topic  $topic
+     * @param  App\Topic  $topic
      * @return View
      */
 	public function edit(Topic $topic)
@@ -98,7 +98,7 @@ class TopicController extends Controller
      * Updating a topic.
      *
      * @param  App\Http\Requests\TopicRequest  $request
-	 * @param  App\Models\Topic  $topic
+	 * @param  App\Topic  $topic
      * @return void
      */
 	public function update(TopicRequest $request, Topic $topic)
@@ -143,7 +143,7 @@ class TopicController extends Controller
     /**
      * Delete a topic.
      *
-     * @param  App\Models\Topic  $topic
+     * @param  App\Topic  $topic
      * @return void
      */
 	public function destroy(Topic $topic)
@@ -158,7 +158,7 @@ class TopicController extends Controller
     /**
      * Vote or abstain a topic by a user.
      *
-     * @param  App\Models\Topic  $topic
+     * @param  App\Topic  $topic
      * @return void
      */
     public function vote(Topic $topic)

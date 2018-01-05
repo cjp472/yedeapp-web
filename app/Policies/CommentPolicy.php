@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\User;
-use App\Models\Comment;
+use App\User;
+use App\Comment;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CommentPolicy extends Policy
@@ -23,8 +23,8 @@ class CommentPolicy extends Policy
     /**
      * Check if the user is the owner of the comment before deleting.
      * 
-     * @param  App\Models\User  $currentUser
-     * @param  App\Models\Comment  $comment
+     * @param  App\User  $currentUser
+     * @param  App\Comment  $comment
      * @return boolean
      */
     public function destroy(User $currentUser, Comment $comment)

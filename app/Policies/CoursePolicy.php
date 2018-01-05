@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\User;
-use App\Models\Course;
+use App\User;
+use App\Course;
 
 class CoursePolicy extends Policy
 {
@@ -20,8 +20,8 @@ class CoursePolicy extends Policy
     /**
      * Before updating, check if the user is the owner of a course.
      * 
-     * @param  App\Models\User  $currentUser
-     * @param  App\Models\Course  $course
+     * @param  App\User  $currentUser
+     * @param  App\Course  $course
      * @return boolean
      */
     public function update(User $currentUser, Course $course)
@@ -32,8 +32,8 @@ class CoursePolicy extends Policy
     /**
      * Before deleting, check if the user is the owner of a course.
      * 
-     * @param  App\Models\User  $currentUser
-     * @param  App\Models\Course  $course
+     * @param  App\User  $currentUser
+     * @param  App\Course  $course
      * @return boolean
      */
     public function destroy(User $currentUseruser, Course $course)

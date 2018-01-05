@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Comment;
-use App\Models\Topic;
-use App\Models\User;
+use App\Comment;
+use App\Topic;
+use App\User;
 
 class CommentsTableSeeder extends Seeder
 {

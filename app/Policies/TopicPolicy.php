@@ -2,16 +2,16 @@
 
 namespace App\Policies;
 
-use App\Models\User;
-use App\Models\Topic;
+use App\User;
+use App\Topic;
 
 class TopicPolicy extends Policy
 {
     /**
      * Check if the user is the owner of the topic before updating.
      * 
-     * @param  App\Models\User  $currentUser
-     * @param  App\Models\Topic  $topic
+     * @param  App\User  $currentUser
+     * @param  App\Topic  $topic
      * @return boolean
      */
     public function update(User $currentUser, Topic $topic)
@@ -22,8 +22,8 @@ class TopicPolicy extends Policy
     /**
      * Check if the user is the owner of the topic before deleting.
      * 
-     * @param  App\Models\User  $currentUser
-     * @param  App\Models\Topic  $topic
+     * @param  App\User  $currentUser
+     * @param  App\Topic  $topic
      * @return boolean
      */
     public function destroy(User $currentUser, Topic $topic)

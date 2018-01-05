@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CourseRequest;
-use App\Models\Course;
+use App\Course;
 use App\Handlers\ImageUploadHandler;
 use Auth;
 
@@ -30,7 +30,7 @@ class CourseController extends Controller
     /**
      * A course's preface page.
      *
-     * @param  App\Models\Course  $course
+     * @param  App\Course  $course
      * @return View
      */
     public function show(Course $course)
@@ -42,7 +42,7 @@ class CourseController extends Controller
     /**
      * Creating a course.
      *
-     * @param  App\Models\Course  $course
+     * @param  App\Course  $course
      * @return View
      */
     public function create(Course $course)
@@ -55,7 +55,7 @@ class CourseController extends Controller
      *
      * @param  App\Http\Requests\CourseRequest  $request
      * @param  App\Handlers\ImageUploadHandler  $uploader
-	 * @param  App\Models\Course  $course
+	 * @param  App\Course  $course
      * @return void
      */
 	public function store(CourseRequest $request, ImageUploadHandler $uploader, Course $course)
@@ -81,7 +81,7 @@ class CourseController extends Controller
     /**
      * Editing a course.
      *
-     * @param  App\Models\Course  $course
+     * @param  App\Course  $course
      * @return View
      */
     public function edit(Course $course)
@@ -96,7 +96,7 @@ class CourseController extends Controller
      *
      * @param  App\Http\Requests\CourseRequest  $request
      * @param  App\Handlers\ImageUploadHandler  $uploader
-	 * @param  App\Models\Course  $course
+	 * @param  App\Course  $course
      * @return void
      */
 	public function update(CourseRequest $request, ImageUploadHandler $uploader, Course $course)

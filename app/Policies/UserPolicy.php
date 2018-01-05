@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\User;
+use App\User;
 
 class UserPolicy extends Policy
 {
@@ -22,8 +22,8 @@ class UserPolicy extends Policy
      * is updating their profile. If they are the same one, then updating their
      * own profile, and the policy pass the update action. If not, block.
      * 
-     * @param  App\Models\User  $currentUser
-     * @param  App\Models\User  $user
+     * @param  App\User  $currentUser
+     * @param  App\User  $user
      * @return boolean
      */
     public function update(User $currentUser, User $user)

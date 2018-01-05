@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Comment;
+use App\Comment;
 
 return [
 

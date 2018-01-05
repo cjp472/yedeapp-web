@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Topic;
-use App\Models\User;
-use App\Models\Course;
-use App\Models\Chapter;
+use App\Topic;
+use App\User;
+use App\Course;
+use App\Chapter;
 
 class TopicsTableSeeder extends Seeder
 {

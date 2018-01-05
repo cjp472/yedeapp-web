@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Models\Comment::class, function (Faker $faker) {
+$factory->define(App\Comment::class, function (Faker $faker) {
     
     // Any time in this month
     $updated_at = $faker->dateTimeThisMonth();

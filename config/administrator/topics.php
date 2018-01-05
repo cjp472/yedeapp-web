@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Topic;
+use App\Topic;
 
 return [
 

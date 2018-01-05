@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Course;
+use App\Course;
 
 return [
 

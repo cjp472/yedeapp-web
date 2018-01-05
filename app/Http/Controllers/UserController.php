@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
-use App\Models\User;
+use App\User;
 use App\Handlers\ImageUploadHandler;
 
 class UserController extends Controller
@@ -23,7 +23,7 @@ class UserController extends Controller
     /**
      * User profile show page.
      *
-     * @param  App\Models\User  $user
+     * @param  App\User  $user
      * @return View
      */
     public function show(User $user)
@@ -36,7 +36,7 @@ class UserController extends Controller
     /**
      * User profile editing page.
      *
-     * @param  App\Models\User  $user
+     * @param  App\User  $user
      * @return View
      */
     public function edit(User $user)
@@ -54,7 +54,7 @@ class UserController extends Controller
      *
      * @param  App\Http\Requests\UserRequest  $request
      * @param  App\Handlers\ImageUploadHandler  $uploader
-     * @param  App\Models\User  $user
+     * @param  App\User  $user
      * @return View
      */
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
