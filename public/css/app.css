@@ -8726,42 +8726,42 @@ body {
   margin-bottom: 0px;
 }
 
-.user-show-page .user-tabs .panel-body .panel-body {
+.user-show-page .user-tabs .panel-body {
   padding: 20px;
 }
 
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs > li > a {
+.user-show-page .user-tabs .panel-body .nav-tabs > li > a {
   color: #555;
 }
 
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs > li.active > a,
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs > li.active > a:hover,
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs > li.active > a:focus {
+.user-show-page .user-tabs .panel-body .nav-tabs > li.active > a,
+.user-show-page .user-tabs .panel-body .nav-tabs > li.active > a:hover,
+.user-show-page .user-tabs .panel-body .nav-tabs > li.active > a:focus {
   background-color: #fff;
 }
 
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs-justified > .active > a,
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs.nav-justified > .active > a,
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs.nav-justified > .active > a,
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs-justified > .active > a:hover,
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs.nav-justified > .active > a:hover,
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs.nav-justified > .active > a:hover,
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs-justified > .active > a:focus,
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs.nav-justified > .active > a:focus,
-.user-show-page .user-tabs .panel-body .panel-body .nav-tabs.nav-justified > .active > a:focus {
+.user-show-page .user-tabs .panel-body .nav-tabs-justified > .active > a,
+.user-show-page .user-tabs .panel-body .nav-tabs.nav-justified > .active > a,
+.user-show-page .user-tabs .panel-body .nav-tabs.nav-justified > .active > a,
+.user-show-page .user-tabs .panel-body .nav-tabs-justified > .active > a:hover,
+.user-show-page .user-tabs .panel-body .nav-tabs.nav-justified > .active > a:hover,
+.user-show-page .user-tabs .panel-body .nav-tabs.nav-justified > .active > a:hover,
+.user-show-page .user-tabs .panel-body .nav-tabs-justified > .active > a:focus,
+.user-show-page .user-tabs .panel-body .nav-tabs.nav-justified > .active > a:focus,
+.user-show-page .user-tabs .panel-body .nav-tabs.nav-justified > .active > a:focus {
   border-bottom-color: #fff;
 }
 
-.user-show-page .user-tabs .panel-body .tab-content {
+.user-show-page .user-tabs .tab-content {
   padding: 15px;
 }
 
-.user-show-page .user-tabs .panel-body .tab-content .tab-pane > .item-list {
+.user-show-page .user-tabs .tab-content .tab-pane > .item-list {
   margin: 0;
   padding: 0;
 }
 
-.user-show-page .user-tabs .panel-body .tab-content .tab-pane > .item-list li {
+.user-show-page .user-tabs .tab-content .tab-pane > .item-list li {
   margin: 0.5em auto;
   padding: 0.5em 0;
   list-style: none;

@@ -3,7 +3,6 @@
 @section('title', $user->name . ' 的个人资料 - ' . config('app.name'))
     
 @section('content')
-
 <div class="row">
 
     <div class="col-md-3 col-sm-12 col-xs-12 user-info">
@@ -43,38 +42,34 @@
             </div>
         </div>
     </div>
+
     <div class="col-md-9 col-sm-12 col-xs-12 user-tabs">
         {{-- 用户发布的内容 --}}
         <div class="panel panel-default">
             <div class="panel-body">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="http://www.qq.com">历史</a></li>
-                    <li><a href="#favorite">收藏</a></li>
-                    <li><a href="#comment">留言</a></li>
-                    <li><a href="#star" >赞过</a></li>
-                    <li><a href="#atme">@我</a></li>
+                    <li class="active"><a href="{{ route('user.show', [$user, 'history']) }}">历史</a></li>
+                    <li><a href="{{ route('user.show', [$user, 'favorite']) }}">收藏</a></li>
+                    <li><a href="{{ route('user.show', [$user, 'comments']) }}">留言</a></li>
+                    <li><a href="{{ route('user.show', [$user, 'star']) }}" >赞过</a></li>
+                    <li><a href="{{ route('user.show', [$user, 'atme']) }}">@我</a></li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane">历史内容</div>
-                        <ul class="item-list">
-                            @forelse ($comments as $comment)
-                                <li>
-                                    {{ $comment->body }}
-                                </li>
-                            @empty
-                                {{-- 没有留言处理 --}}
-                            @endforelse
-                        </ul>
-                        <div class="text-center">{!! $comments->render() !!}</div>
-                    </div>
+                    <ul class="item-list">
+                        @foreach ($comments as $comment)
+                            <li>
+                                {{ $comment->body }}
+                            </li>
+                        @endforeach
+                    </ul>
+                    <div class="text-center">{{ $comments->render() }}</div>
                 </div>
             </div>
         </div>
     </div>
     
 </div>
-
 @stop

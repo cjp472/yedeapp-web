@@ -29,16 +29,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-
-    public function isAuthorOf($model)
-    {
-        return $this->id == $model->user_id;
-    }
-
     /**
      * Mutate user model's password attribute before saved into db.
      *
@@ -72,5 +62,19 @@ class User extends Authenticatable
         $this->attributes['avatar'] = $path;
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function vote()
+    {
+        return $this->hasOne(Vote::class);
+    }
+
+    public function isAuthorOf($model)
+    {
+        return $this->id == $model->user_id;
+    }
 
 }

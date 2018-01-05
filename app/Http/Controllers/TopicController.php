@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use App\Models\Course;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 use App\Handlers\ImageUploadHandler;
+use Carbon\Carbon;
 use Auth;
 
 class TopicController extends Controller
@@ -151,5 +153,25 @@ class TopicController extends Controller
 		$topic->delete();
 
 		return redirect()->route('course.show', $topic->course)->with('message', '删除成功');
-	}
+    }
+
+    /**
+     * Vote or abstain a topic by a user.
+     *
+     * @param  App\Models\Topic  $topic
+     * @return void
+     */
+    public function vote(Topic $topic)
+    {
+        $voteId = Auth::user()->vote->id;
+        $voteTime = Carbon::now()->toDateTimeString();
+
+        $topic->votes()->toggle([
+            $voteId => [
+                'created_at' => $voteTime,
+                'updated_at' => $voteTime,
+            ],
+        ]);
+    }
+    
 }

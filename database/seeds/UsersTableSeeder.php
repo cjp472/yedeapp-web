@@ -32,9 +32,12 @@ class UsersTableSeeder extends Seeder
         
         // Make user model's hidden fields visible which can make it
         // manipulatable, then put them into an array.
-        $user_array = $users->makeVisible(['password', 'remember_token'])->toArray();
+        // $user_array = $users->makeVisible(['password', 'remember_token'])->toArray();
+        // User::insert($user_array);
 
-        User::insert($user_array);
+        foreach ($users as $user) {
+            $user->save();
+        }
 
         // Remake the first user's data
         $user = User::find(1);

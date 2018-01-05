@@ -23,7 +23,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // If you would like a route parameter to always be constrained by a given regular expression, 
+        // you may use the pattern method.
+        
+        // Route::pattern('id', '[0-9]+');
 
         parent::boot();
     }

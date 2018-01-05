@@ -10,9 +10,12 @@
         <div class="head clearfix">
             <h1 class="pull-left">{{ $topic->title }}</h1>
             <div class="pull-right">
+                @auth
                 <div class="head-button">
                     <a href="#" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-heart"></i> 收藏</a>
                 </div>
+                @endauth
+                
                 @can('update', $topic)
                     <div class="head-button">
                         <a href="{{ route('topic.edit', $topic->id) }}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-edit"></i> 编辑</a>
@@ -34,7 +37,9 @@
 
         <div class="sns-share">
             <div class="sns-component">分享：这里是分享图片</div>
-            <div class="favorite"><a href="" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-heart"></i> 收藏</a></div>
+            @auth
+                <div class="favorite"><a href="" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-heart"></i> 收藏</a></div>
+            @endauth
         </div>
 
         <div class="prev-and-next clearfix">

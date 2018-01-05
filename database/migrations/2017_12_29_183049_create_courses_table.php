@@ -17,7 +17,7 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->string('name')->index();
             $table->string('slug')->index()->unique();
-            $table->integer('user_id')->index();
+            $table->integer('user_id')->unsigned()->index();
             $table->string('cover')->nullable();
             $table->text('intro')->nullable();
             $table->text('introduction')->nullable();

@@ -38,5 +38,16 @@ class CommentController extends Controller
 		$comment->delete();
 
         return redirect($comment->topic->link())->with('message', '删除成功');
-	}
+    }
+    
+    /**
+     * Vote or abstain a comment by a user.
+     *
+     * @param  App\Models\Comment  $comment
+     * @return void
+     */
+    public function vote(Comment $comment)
+    {
+        $comment->votes()->toggle(Auth::id());
+    }
 }
