@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
 use App\Comment;
+use Carbon\Carbon;
 use Auth;
 
 class CommentController extends Controller
@@ -46,8 +47,22 @@ class CommentController extends Controller
      * @param  App\Comment  $comment
      * @return void
      */
-    public function vote(Comment $comment)
+    public function vote(Comment $comment, $action = 'up')
     {
-        $comment->votes()->toggle(Auth::id());
+        $voteId = Auth::user()->vote->id;
+        $voteTime = Carbon::now()->toDateTimeString();
+
+        $comment->votes()->toggle([
+            $voteId => [
+                'created_at' => $voteTime,
+                'updated_at' => $voteTime,
+            ],
+        ]);
+
+        if ($action == 'up') {
+            $comment->increment('star');
+        } else {
+            $comment->decrement('star');
+        }
     }
 }

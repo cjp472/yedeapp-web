@@ -51,6 +51,8 @@ label { font-weight: normal; }
 img.captcha { margin-bottom: 0px; margin-top: 10px; cursor: pointer; }
 .btn-wider-look { padding-left: 35px; padding-right: 35px; }
 .btn-widest-look { padding-left: 50px; padding-right: 50px; }
+.favorite-add.btn-selected { background-color: #e6e6e6; }
+.comment-vote.btn-selected { color: #999; }
 
 .course-cover {
     padding-top: 20px; padding-bottom: 20px; text-align: center;

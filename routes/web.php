@@ -42,8 +42,7 @@ Route::resource('topic', 'TopicController', ['only' => ['create', 'store', 'upda
 Route::get('course/{course}/topic/{topic}/{slug?}', 'TopicController@show')->name('topic.show');
 Route::post('upload_image', 'TopicController@uploadImage')->name('topic.upload_image');
 Route::get('topic/{topic}/vote', 'TopicController@vote')->name('topic.vote');
-Route::get('topic/{topic}/abstain', 'TopicController@abstain')->name('topic.abstain');
 
 // Comment Routes
 Route::resource('comment', 'CommentController', ['only' => ['store', 'destroy']]);
-Route::get('comment/{comment}/vote', 'CommentController@vote')->name('comment.vote');
+Route::get('comment/{comment}/vote/{action?}', 'CommentController@vote')->name('comment.vote');

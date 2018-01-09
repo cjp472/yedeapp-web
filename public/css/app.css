@@ -8380,6 +8380,14 @@ img.captcha {
   padding-right: 50px;
 }
 
+.favorite-add.btn-selected {
+  background-color: #e6e6e6;
+}
+
+.comment-vote.btn-selected {
+  color: #999;
+}
+
 .course-cover {
   padding-top: 20px;
   padding-bottom: 20px;
