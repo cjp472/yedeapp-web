@@ -33,7 +33,7 @@
                                         {{ $topic->title }}
                                     </a>
                                     @if(!$topic->free)
-                                        <span class="pull-right"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <span class="pull-right"><i class="glyphicon glyphicon-lock" title="订阅后开启"></i></span>
                                     @endif
                                 </dd>
                             @endif

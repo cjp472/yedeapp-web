@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Topic;
 use App\Course;
-use App\Like;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
@@ -21,7 +20,7 @@ class TopicController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => 'show']);
     }
 
 	/**
@@ -34,6 +33,11 @@ class TopicController extends Controller
      */
     public function show(Request $request, Course $course, Topic $topic)
     {
+        // If the topic is free that it's no need to add any authorizations.
+        if (!$topic->free) {
+            $this->authorize('show', $topic);
+        }
+
 		// Redirect to slug link with http code 301.
 		if ( !empty($topic->slug) && $topic->slug != $request->slug ) {
 			return redirect($topic->link($course->slug), 301);

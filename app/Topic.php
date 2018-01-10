@@ -28,6 +28,11 @@ class Topic extends Model
         return $this->morphToMany(Vote::class, 'votable');
     }
 
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
     public function link($courseSlug = '')
     {
         // Provide a $courseSlug param in avoiding query database multi times.

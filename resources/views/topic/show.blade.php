@@ -161,7 +161,9 @@ var $jumper = $('#jump_to_editor');
 var $form = $('#comment_form');
     
 var $buttonsAddFavorite = $('.favorite-add');
-var $buttonsVoteComment = $('.comment-vote');
+{{--
+// var $buttonsVoteComment = $('.comment-vote');
+--}}
 
 var USERID = '{{ Auth::id() }}';
 var TOPIC_VOTES = '{!! $topic->votes !!}';
@@ -239,70 +241,72 @@ function FavoriteAddButtons(buttons) {
     }
 }
 
-{{--  function CommentVoteButtons(buttons) {
-    this.buttons = buttons;
-    this.state = [];
-    this.initState = [];
-    this.star = [];
+{{--
+// function CommentVoteButtons(buttons) {
+//     this.buttons = buttons;
+//     this.state = [];
+//     this.initState = [];
+//     this.star = [];
 
-    this.setVoteUp = function(btn, star) {
-        this.setStyle(btn, 'btn-selected', 'btn-selected');
-        this.setIcon(btn, 'glyphicon-thumbs-up', 'glyphicon-heart');
-        this.setText(btn, star);
-    }
+//     this.setVoteUp = function(btn, star) {
+//         this.setStyle(btn, 'btn-selected', 'btn-selected');
+//         this.setIcon(btn, 'glyphicon-thumbs-up', 'glyphicon-heart');
+//         this.setText(btn, star);
+//     }
 
-    this.setVoteDown = function(btn, star) {
-        this.setStyle(btn, 'btn-selected', '');
-        this.setIcon(btn, 'glyphicon-thumbs-up', 'glyphicon-thumbs-up');
-        this.setText(btn, star);
-    }
+//     this.setVoteDown = function(btn, star) {
+//         this.setStyle(btn, 'btn-selected', '');
+//         this.setIcon(btn, 'glyphicon-thumbs-up', 'glyphicon-thumbs-up');
+//         this.setText(btn, star);
+//     }
 
-    this.toggle = function(btn) {
-        var key = btn.attr('data-key');
-        var star = parseInt(this.star[key]);
+//     this.toggle = function(btn) {
+//         var key = btn.attr('data-key');
+//         var star = parseInt(this.star[key]);
 
-        if (this.state[key] == 'up') {
-            this.star[key] = star - 1;
-            this.setVoteDown(btn, this.star[key]);
-            this.state[key] = 'down';
-        } else {
-            this.star[key] = star + 1;
-            this.setVoteUp(btn, this.star[key]);
-            this.state[key] = 'up';
-        }
-    };
+//         if (this.state[key] == 'up') {
+//             this.star[key] = star - 1;
+//             this.setVoteDown(btn, this.star[key]);
+//             this.state[key] = 'down';
+//         } else {
+//             this.star[key] = star + 1;
+//             this.setVoteUp(btn, this.star[key]);
+//             this.state[key] = 'up';
+//         }
+//     };
 
-    this.init = function() {
-        var that = this;
-        this.buttons.each(function() {
-            var btn = $(this),
-                key = btn.attr('data-key'),
-                data = btn.attr('data-vote'),
-                star = btn.attr('data-star');
+//     this.init = function() {
+//         var that = this;
+//         this.buttons.each(function() {
+//             var btn = $(this),
+//                 key = btn.attr('data-key'),
+//                 data = btn.attr('data-vote'),
+//                 star = btn.attr('data-star');
 
-            // Keep the star number whatever the state is.
-            that.star[key] = star;
+//             // Keep the star number whatever the state is.
+//             that.star[key] = star;
 
-            if (that.isVoted(data)) {
-                that.state[key] = that.initState[key] = 'up';
-                that.setVoteUp(btn);
-            } else {
-                that.state[key] = that.initState[key] = 'down';
-                that.setVoteDown(btn);
-            }
-        });
-    };
+//             if (that.isVoted(data)) {
+//                 that.state[key] = that.initState[key] = 'up';
+//                 that.setVoteUp(btn);
+//             } else {
+//                 that.state[key] = that.initState[key] = 'down';
+//                 that.setVoteDown(btn);
+//             }
+//         });
+//     };
 
-    // When the btn has been changed, return it's state 'up' or 'down'.
-    this.isChanged = function(btn) {
-        var key = btn.attr('data-key');
-        if (this.initState[key] != this.state[key]) {
-            return this.state[key];
-        } else {
-            return false;
-        }
-    }
-}  --}}
+//     // When the btn has been changed, return it's state 'up' or 'down'.
+//     this.isChanged = function(btn) {
+//         var key = btn.attr('data-key');
+//         if (this.initState[key] != this.state[key]) {
+//             return this.state[key];
+//         } else {
+//             return false;
+//         }
+//     }
+// }
+--}}
 
 FavoriteAddButtons.prototype = new ButtonsHandler();
 FavoriteAddButtons.prototype.constructor = FavoriteAddButtons;
@@ -310,11 +314,12 @@ FavoriteAddButtons.prototype.constructor = FavoriteAddButtons;
 var fabtns = new FavoriteAddButtons($buttonsAddFavorite);
 fabtns.init();
 
-{{--  CommentVoteButtons.prototype = new ButtonsHandler();
-CommentVoteButtons.prototype.constructor = CommentVoteButtons;
-
-var cvbtns = new CommentVoteButtons($buttonsVoteComment);
-cvbtns.init();  --}}
+{{--
+// CommentVoteButtons.prototype = new ButtonsHandler();
+// CommentVoteButtons.prototype.constructor = CommentVoteButtons;
+// var cvbtns = new CommentVoteButtons($buttonsVoteComment);
+// cvbtns.init();
+--}}
 
 $(document).ready(function(){
     // Jump to comment editor
@@ -342,15 +347,17 @@ $(document).ready(function(){
             $.get(TOPIC_API);
         }
 
-        {{--  $buttonsVoteComment.each(function() {
-            var btn = $(this);
-            var act, api;
+        {{--
+        // $buttonsVoteComment.each(function() {
+        //     var btn = $(this);
+        //     var act, api;
 
-            if (act = cvbtns.isChanged(btn)) {
-                api = btn.attr('data-uri') + '/' + act + '?s=' + Math.random();
-                $.get(api);
-            }
-        });  --}}
+        //     if (act = cvbtns.isChanged(btn)) {
+        //         api = btn.attr('data-uri') + '/' + act + '?s=' + Math.random();
+        //         $.get(api);
+        //     }
+        // });
+        --}}
     });
 });
 </script>
