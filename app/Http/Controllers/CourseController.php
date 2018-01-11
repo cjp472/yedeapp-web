@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CourseRequest;
-use App\Course;
 use App\Handlers\ImageUploadHandler;
+use App\Course;
 use Auth;
 
 class CourseController extends Controller
@@ -24,19 +24,30 @@ class CourseController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except' => ['show', 'view']]);
     }
 
     /**
-     * A course's preface page.
+     * The course's intro page.
      *
      * @param  App\Course  $course
      * @return View
      */
     public function show(Course $course)
     {
+        return view('course.show', compact('course'));
+    }
+
+    /**
+     * The course's chapters page.
+     *
+     * @param  App\Course  $course
+     * @return View
+     */
+    public function chapters(Course $course)
+    {
         $chapters = json_decode($course->chapters);
-        return view('course.show', compact('course', 'chapters'));
+        return view('course.chapters', compact('course', 'chapters'));
     }
 
     /**

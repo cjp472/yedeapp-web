@@ -8420,6 +8420,25 @@ img.captcha {
   margin-top: 0.8em;
 }
 
+.course-detail {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #d3e0e9;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 1px 2px 0 rgba(101, 129, 156, 0.08);
+          box-shadow: 0px 1px 2px 0 rgba(101, 129, 156, 0.08);
+}
+
+.course-detail .head {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.course-detail .body {
+  padding: 0px 30px;
+  font-size: 1.1em;
+}
+
 .form-control {
   border: #ccc 1px solid;
 }
@@ -8505,50 +8524,53 @@ body {
 }
 
 .welcome-page .body {
-  margin: 30px auto;
+  margin: 10px auto;
   background-color: #fff;
   border: 1px solid #d3e0e9;
   -webkit-box-shadow: 0px 1px 2px 0px rgba(101, 129, 156, 0.08);
           box-shadow: 0px 1px 2px 0px rgba(101, 129, 156, 0.08);
 }
 
-.course-show-page .course-detail {
-  margin-bottom: 20px;
-  background-color: #fff;
-  border: 1px solid #d3e0e9;
-  border-radius: 3px;
-  -webkit-box-shadow: 0px 1px 2px 0 rgba(101, 129, 156, 0.08);
-          box-shadow: 0px 1px 2px 0 rgba(101, 129, 156, 0.08);
+.course-show-page .course-detail .body dt {
+  font-size: 1.2em;
 }
 
-.course-show-page .course-detail .head {
-  padding-top: 15px;
-  padding-bottom: 15px;
+.course-show-page .course-detail .body dd {
+  margin: 0.8em 0 2em;
 }
 
-.course-show-page .course-detail .body {
-  padding: 10px 30px;
-  font-size: 1.1em;
+.course-show-page .course-detail .body .extra {
+  margin: 1em auto 2em;
+  text-align: center;
 }
 
-.course-show-page .course-detail .body .chapters dt {
+.course-show-page .course-detail .body .extra a {
+  margin: 0 5px;
+}
+
+.course-chapters-page .course-detail .body {
+  padding-bottom: 20px;
+}
+
+.course-chapters-page .course-detail .body .chapters dt {
   margin: 1em 0 0;
   font-size: 1.2em;
 }
 
-.course-show-page .course-detail .body .chapters dd {
+.course-chapters-page .course-detail .body .chapters dd {
   margin: 0.5em auto;
   line-height: 2em;
   border-bottom: #eee 1px solid;
   text-indent: 0.5em;
+  clear: both;
 }
 
-.course-show-page .course-detail .body .chapters dd .label {
+.course-chapters-page .course-detail .body .chapters dd .label {
   margin-right: 1em;
   padding: 0.2em 0.5em;
 }
 
-.course-show-page .course-detail .body .chapters dd span > i {
+.course-chapters-page .course-detail .body .chapters dd span > i {
   margin-right: 1em;
   color: #ccc;
   font-size: 0.5em;
@@ -8601,7 +8623,7 @@ body {
 }
 
 .topic-show-page .topic-detail .sns-share {
-  padding: 5em 2em;
+  padding: 3em 2em 2em;
   text-align: center;
 }
 
@@ -8610,8 +8632,12 @@ body {
   margin-right: 1em;
 }
 
-.topic-show-page .topic-detail .sns-share .favorite {
-  display: inline-block;
+.topic-show-page .topic-detail .sns-share .sns-component .sns-label,
+.topic-show-page .topic-detail .sns-share .sns-component .sns-icons,
+.topic-show-page .topic-detail .sns-share .sns-component .favorite {
+  float: left;
+  height: 36px;
+  line-height: 36px;
 }
 
 .topic-show-page .topic-detail .prev-and-next {

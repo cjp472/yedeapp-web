@@ -16,6 +16,23 @@ class CoursePolicy extends Policy
     {
         //
     }
+    
+    /**
+     * Check if the user has paid for the course.
+     * 
+     * @param  App\User  $currentUser
+     * @param  App\Topic  $topic
+     * @return boolean
+     */
+    public function show(User $currentUser, Topic $topic)
+    {
+        foreach($currentUser->subscriptions as $subscription) {
+            if ($subscription->course_id == $topic->course->id) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * Before updating, check if the user is the owner of a course.
@@ -26,7 +43,7 @@ class CoursePolicy extends Policy
      */
     public function update(User $currentUser, Course $course)
     {
-        return $currentUser->id === $course->user_id;
+        return $currentUser->isAuthorOf($course);
     }
 
     /**
@@ -38,6 +55,6 @@ class CoursePolicy extends Policy
      */
     public function destroy(User $currentUseruser, Course $course)
     {
-        return $currentUser->id === $course->user_id;
+        return $currentUser->isAuthorOf($course);
     }
 }

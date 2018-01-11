@@ -82,4 +82,14 @@ class User extends Authenticatable
         return $this->id == $model->user_id;
     }
 
+    public function hasSubscribed($course)
+    {
+        foreach($this->subscriptions as $subscription) {
+            if ($subscription->course_id == $course->id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

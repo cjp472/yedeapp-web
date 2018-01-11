@@ -36,10 +36,22 @@
         </div>
 
         <div class="sns-share">
-            <div class="sns-component">分享：这里是分享图片</div>
-            @auth
-                <div class="favorite"><a class="btn btn-default btn-sm favorite-add"><i class="glyphicon glyphicon-heart-empty"></i> <span>收藏</span></a></div>
-            @endauth
+            <div class="sns-component">
+                <span class="sns-label">分享：</span>
+                <div class="bdsharebuttonbox sns-icons">
+                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                    <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+                    <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+                    <a href="#" class="bds_print" data-cmd="print" title="打印"></a>
+                    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+                    {{--  <a href="#" class="bds_more" data-cmd="more"></a>  --}}
+                </div>
+                @auth
+                    <div class="favorite"><a class="btn btn-default btn-sm favorite-add"><i class="glyphicon glyphicon-heart-empty"></i> <span>收藏</span></a></div>
+                @endauth
+            </div>
         </div>
 
         <div class="prev-and-next clearfix">
@@ -59,14 +71,14 @@
     
         <div class="head clearfix">
             <div class="heading pull-left">留言精选</div>
-            <div class="pull-right"><a id="jump_to_editor"><i class="glyphicon glyphicon-pencil"></i> 写留言</a></div>
+            <div class="pull-right"><a id="jump_to_editor" role="button" tabindex="0" data-trigger="focus" data-placement="left" data-content="试读不支持写留言"><i class="glyphicon glyphicon-pencil"></i> 写留言</a></div>
         </div>
 
         <div class="body">
             <ul class="media-list comments"> 
-                @forelse($comments as $comment)
+                @forelse ($comments as $comment)
                     <li class="media comment">
-                        <a id="comment_{{ $comment->id }}">
+                        <a id="comment_{{ $comment->id }}"></a>
                         <div class="media-left">
                             <a href="{{ route('user.show', $comment->user_id) }}">
                                 <img class="media-object img-circle" width="50px" src="{{ $comment->user->avatar }}">
@@ -96,7 +108,7 @@
                             @foreach ($replies as $reply)
                                 @if ($reply->parent_id == $comment->id)
                                     <div class="media reply">
-                                        <a id="comment_{{ $reply->id }}">
+                                        <a id="comment_{{ $reply->id }}"></a>
                                         <div class="media-body">
                                             <div class="media-heading">
                                                 <span class="author"><i class="vline"></i>作者回复</span>
@@ -127,9 +139,8 @@
                     {{-- 没有留言 --}}
                 @endforelse
 
-                @guest
-                    <li class="text-center"><a href="{{ route('login') }}">留言请先登陆</a></li>
-                @else
+                {{-- 订阅后才能留言 --}}
+                @can('show', $topic)
                     {{-- 评论框 --}}
                     <li class="media write" id="write_comment">
                         <div class="media-left">
@@ -145,14 +156,15 @@
                             </form>
                         </div>
                     </li>
-                @endguest
-
+                @else
+                 <li class="text-center" style="margin:20px auto"><a href="{{ route('login') }}">留言请先订阅</a></li>
+                @endcan
             </ul>
         </div>
 
     </div>
 </div>
-@stop
+@endsection
 
 @section('scripts')
 <script>
@@ -167,7 +179,7 @@ var $buttonsAddFavorite = $('.favorite-add');
 
 var USERID = '{{ Auth::id() }}';
 var TOPIC_VOTES = '{!! $topic->votes !!}';
-var TOPIC_API = "{{ route('topic.vote', $topic->id) }}";
+var TOPIC_API = "";
 
 function ButtonsHandler() {
     this.userId = USERID;
@@ -322,6 +334,13 @@ fabtns.init();
 --}}
 
 $(document).ready(function(){
+    // Init bootstrap popover
+    $('[data-toggle="popover"]').popover();
+    // Only subscriber can leave message
+    if ($editor.length <= 0) {
+        $jumper.popover();
+    }
+
     // Jump to comment editor
     $jumper.click(function(){
         $editor.focus();
@@ -338,9 +357,10 @@ $(document).ready(function(){
         fabtns.toggle();
     });
 
-    $buttonsVoteComment.click(function() {
-        cvbtns.toggle($(this));
-    });
+    {{--  
+    //$buttonsVoteComment.click(function() {
+    //cvbtns.toggle($(this));
+    });  --}}
 
     $(window).on('beforeunload', function(){
         if (fabtns.isChanged()) {
@@ -361,4 +381,5 @@ $(document).ready(function(){
     });
 });
 </script>
-@stop
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["tqq","tieba","qzone","fbook","twi"],"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+@endsection

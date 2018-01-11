@@ -993,10 +993,6 @@ var app = new Vue({
   el: '#app'
 });
 
-$(function () {
-  $('[data-toggle="popover"]').popover();
-});
-
 /***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {

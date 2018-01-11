@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Course;
+use Auth;
 
 class PageController extends Controller
 {
@@ -13,7 +15,9 @@ class PageController extends Controller
      */
     public function welcome()
     {
-        return view('pages.welcome');
+        $courses = Course::all();
+        
+        return view('pages.welcome', compact('courses'));
     }
 
     /**

@@ -36,6 +36,7 @@ Route::get('user/{user}/{tab?}', 'UserController@show')->name('user.show');
 
 // Course Routes
 Route::resource('course', 'CourseController', ['only' => ['show', 'create', 'store', 'update', 'edit']]);
+Route::get('course/{course}/chapters', 'CourseController@chapters')->name('course.chapters');
 
 // Topic Routes
 Route::resource('topic', 'TopicController', ['only' => ['create', 'store', 'update', 'edit', 'destroy']]);
