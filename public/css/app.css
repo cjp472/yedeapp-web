@@ -8492,16 +8492,19 @@ img.captcha {
   margin: 0 -15px 0 0;
 }
 
-.site-header .navbar-nav li {
+.site-header .navbar-nav > li {
   float: left;
 }
 
-.site-header .navbar-nav li a {
+.site-header .navbar-nav > li > a {
   padding-top: 14px;
   padding-bottom: 14px;
 }
 
 .site-header .navbar-nav .open .dropdown-menu {
+  position: absolute;
+  right: 0;
+  left: auto;
   padding: 0px;
   min-width: auto;
   border: 1px solid #ccc;
