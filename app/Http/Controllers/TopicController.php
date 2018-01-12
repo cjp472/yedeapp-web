@@ -49,9 +49,12 @@ class TopicController extends Controller
 
 		// Get comments and load user table to prevent N+1 problem.
 		$comments = $topic->comments()->where('parent_id', null)->orderBy('star', 'desc')->orderBy('updated_at', 'desc')->get()->load('user');
-		$replies = $topic->comments()->where('parent_id', '>', 0)->get();
+        $replies = $topic->comments()->where('parent_id', '>', 0)->get();
+        
+        // Get this course's chapters
+        $chapters = json_decode($course->chapters);
 
-        return view('topic.show', compact('topic', 'comments', 'replies', 'prev', 'next'));
+        return view('topic.show', compact('topic', 'course', 'chapters', 'comments', 'replies', 'prev', 'next'));
     }
 
 	/**

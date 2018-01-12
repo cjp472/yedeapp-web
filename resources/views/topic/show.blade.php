@@ -3,6 +3,8 @@
 @section('title', $topic->title . ' - ' . config('app.name'))
 
 @section('content')
+@include('topic._header')
+@include('topic._catalog')
 
 <div class="row topic-detail">
     <div class="col-md-12">
@@ -46,7 +48,6 @@
                     <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
                     <a href="#" class="bds_print" data-cmd="print" title="打印"></a>
                     <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
-                    {{--  <a href="#" class="bds_more" data-cmd="more"></a>  --}}
                 </div>
                 @auth
                     <div class="favorite"><a class="btn btn-default btn-sm favorite-add"><i class="glyphicon glyphicon-heart-empty"></i> <span>收藏</span></a></div>
@@ -171,6 +172,7 @@
 var $editor = $('#write_comment textarea');
 var $jumper = $('#jump_to_editor');
 var $form = $('#comment_form');
+var $header = $('.topic-header');
     
 var $buttonsAddFavorite = $('.favorite-add');
 {{--
@@ -318,6 +320,11 @@ function FavoriteAddButtons(buttons) {
 //         }
 //     }
 // }
+
+// CommentVoteButtons.prototype = new ButtonsHandler();
+// CommentVoteButtons.prototype.constructor = CommentVoteButtons;
+// var cvbtns = new CommentVoteButtons($buttonsVoteComment);
+// cvbtns.init();
 --}}
 
 FavoriteAddButtons.prototype = new ButtonsHandler();
@@ -325,13 +332,6 @@ FavoriteAddButtons.prototype.constructor = FavoriteAddButtons;
 
 var fabtns = new FavoriteAddButtons($buttonsAddFavorite);
 fabtns.init();
-
-{{--
-// CommentVoteButtons.prototype = new ButtonsHandler();
-// CommentVoteButtons.prototype.constructor = CommentVoteButtons;
-// var cvbtns = new CommentVoteButtons($buttonsVoteComment);
-// cvbtns.init();
---}}
 
 $(document).ready(function(){
     // Init bootstrap popover
@@ -378,6 +378,15 @@ $(document).ready(function(){
         //     }
         // });
         --}}
+    });
+
+    // Make topic-header show and hide
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 60) {
+            $header.show();
+        } else {
+            $header.hide();
+        }
     });
 });
 </script>

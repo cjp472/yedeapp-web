@@ -12,10 +12,12 @@
         <div class="col-sm-9 course-intro">
             <div class="name">{{ $course->name }}</div>
             <div class="intro">{!! $course->intro !!}</div>
-            @if (!Auth::user()->hasSubscribed($course))
-            <div class="extra">
-                <a href="" class="btn btn-primary btn-wider-look">订阅 ￥{{ $course->price }}</a>
-            </div>
+            @if (Auth::check())
+                @if (!Auth::user()->hasSubscribed($course))
+                    <div class="extra">
+                        <a href="" class="btn btn-primary btn-wider-look">订阅 ￥{{ $course->price }}</a>
+                    </div>
+                @endif
             @endif
         </div>
     </div>
