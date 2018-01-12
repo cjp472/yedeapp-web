@@ -9,9 +9,9 @@
                 <dl>
                     @foreach ($chapters as $chapter)
                         <dt>{{ $chapter->name }}</dt>
-                        @foreach ($course->topics as $item)
-                            @if($item->chapter_id === $chapter->id)
-                                <dd><a href="{{ $item->link($course->slug) }}">{{ $item->title }}</a></dd>
+                        @foreach ($course->topics as $topic)
+                            @if($topic->chapter_id === $chapter->id)
+                                <dd><a href="{{ $topic->link($course->slug) }}">{{ $topic->title }}</a></dd>
                             @endif
                         @endforeach
                     @endforeach
