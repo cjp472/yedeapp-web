@@ -20,7 +20,7 @@ class SlugTranslateHandler
 
         // Baidu translate Config
         $api = 'http://api.fanyi.baidu.com/api/trans/vip/translate?';
-        $appid = config('services.baidu_translate.testid');
+        $appid = config('services.baidu_translate.appid');
         $key = config('services.baidu_translate.key');
         $salt = time();
 
