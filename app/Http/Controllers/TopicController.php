@@ -54,6 +54,10 @@ class TopicController extends Controller
         // Get this course's chapters
         $chapters = json_decode($course->chapters);
 
+        // Convert markdown to html
+        // $parsedown = new Parsedown();
+        // $topic->body = $parsedown->text($topic->body);
+
         // Only role Superadmin and Admin can delete or reply the comments
         if (Auth::check() && (Auth::user()->hasRole('Superadmin') || Auth::user()->hasRole('Admin'))) {
             $canDeleteComment = true;

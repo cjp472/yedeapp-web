@@ -61,17 +61,23 @@
         </div>
     </div>
 </div>
-@stop
+@endsection
 
 @section('styles')
+    {{--  <link rel="stylesheet" type="text/css" href="{{ asset('css/mditor.min.css') }}">  --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
-@stop
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor-html.css') }}">
+@endsection
 
 @section('scripts')
-<script type="text/javascript"  src="{{ asset('js/module.min.js') }}"></script>
-<script type="text/javascript"  src="{{ asset('js/hotkeys.min.js') }}"></script>
-<script type="text/javascript"  src="{{ asset('js/uploader.min.js') }}"></script>
-<script type="text/javascript"  src="{{ asset('js/simditor.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/module.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/hotkeys.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/uploader.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/simditor.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/beautify-html.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/simditor-html.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/simditor-autosave.js') }}"></script>
+{{--  <script type="text/javascript"  src="{{ asset('js/mditor.min.js') }}"></script>  --}}
 <script>
 var $courses = $('#courses_field');
 var $chapters = $('#chapters_field');
@@ -126,11 +132,11 @@ $(document).ready(function(){
         },
         pasteImage: true,
         tabIndent: true,
+        autosave: 'editor-content',
         toolbar: [
             'title',
             'bold',
             'italic',
-            'underline',
             'strikethrough',
             'fontScale',
             'color',
@@ -144,9 +150,11 @@ $(document).ready(function(){
             'hr',
             'indent',
             'outdent',
-            'alignment'
+            'alignment',
+            'html',
         ]
     });
+    {{--  var mditor =  Mditor.fromTextarea(document.getElementById('editor'));  --}}
 })
 </script>
-@stop
+@endsection

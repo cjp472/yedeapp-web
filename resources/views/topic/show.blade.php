@@ -66,6 +66,10 @@
 </div>
 @endsection
 
+{{--  @section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/mditor.min.css') }}">
+@endsection  --}}
+
 @section('scripts')
     @include('topic._scripts')
 @endsection

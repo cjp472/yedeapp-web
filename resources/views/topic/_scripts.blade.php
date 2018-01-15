@@ -1,3 +1,4 @@
+<script type="text/javascript"  src="{{ asset('js/mditor.min.js') }}"></script>
 <script>
     var $editor = $('.create-reply .editor');
     var $jumper = $('#jump_to_editor');
@@ -164,6 +165,12 @@
     var fabtns = new FavoriteAddButtons($buttonsAddFavorite);
     fabtns.init();
     
+    // Markdown parse
+    {{--  var parser = new Mditor.Parser();
+    var $markdownBody = $('.markdown-body');
+    var topicBody = parser.parse($markdownBody.html());
+    $markdownBody.html(topicBody);  --}}
+
     $(document).ready(function(){
         // Init bootstrap popover
         $('[data-toggle="popover"]').popover();
