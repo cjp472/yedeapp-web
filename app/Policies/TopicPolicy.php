@@ -16,12 +16,7 @@ class TopicPolicy extends Policy
      */
     public function show(User $currentUser, Topic $topic)
     {
-        foreach($currentUser->subscriptions as $subscription) {
-            if ($subscription->course_id == $topic->course->id) {
-                return true;
-            }
-        }
-        return false;
+        return $currentUser->hasSubscribed($topic->course);
     }
 
     /**

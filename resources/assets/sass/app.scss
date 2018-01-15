@@ -330,8 +330,9 @@ body { margin-bottom: 60px; }
                     }
                 }
                 .reply { padding-top: 10px; border-top: #eee 1px solid; }
-                .write {
-                    margin-top: 50px;
+                #reply-editor { margin-top: 40px; }
+                .create-reply {
+                    margin-top: 10px;
                     .editor {
                         width: 100%;
                         min-height: 12em;

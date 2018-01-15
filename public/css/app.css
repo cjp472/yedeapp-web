@@ -8788,11 +8788,15 @@ body {
   border-top: #eee 1px solid;
 }
 
-.topic-show-page .topic-comments .body .comments .write {
-  margin-top: 50px;
+.topic-show-page .topic-comments .body .comments #reply-editor {
+  margin-top: 40px;
 }
 
-.topic-show-page .topic-comments .body .comments .write .editor {
+.topic-show-page .topic-comments .body .comments .create-reply {
+  margin-top: 10px;
+}
+
+.topic-show-page .topic-comments .body .comments .create-reply .editor {
   width: 100%;
   min-height: 12em;
   padding: 10px;
@@ -8805,7 +8809,7 @@ body {
   outline: none;
 }
 
-.topic-show-page .topic-comments .body .comments .write .submit-tip {
+.topic-show-page .topic-comments .body .comments .create-reply .submit-tip {
   margin-left: 10px;
   color: #999;
 }

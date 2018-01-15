@@ -26,6 +26,7 @@ class CommentsTableSeeder extends Seeder
             // Get random id from ids array.
             $comment->user_id = $faker->randomElement($user_ids);
             $comment->topic_id = $faker->randomElement($topic_ids);
+            $comment->course_id = Topic::find($comment->topic_id)->course_id;
         });
 
         Comment::insert($comments->toArray());

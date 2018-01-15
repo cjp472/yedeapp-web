@@ -11,6 +11,11 @@
                 <div class="media-heading">
                     <span class="author">{{ $comment->user->name }}</span>
                     <div class="pull-right">
+                        @if ($canReplyComment)
+                            <div class="head-button">
+                                <a class="btn btn-link btn-md reply-button" data="{{ $comment->id }}"><i class="glyphicon glyphicon-comment"></i> 回复</a>
+                            </div>
+                        @endif
                         @if ($canDeleteComment)
                             <div class="head-button">
                                 <form action="{{ route('comment.destroy', $comment->id) }}" method="post">
@@ -29,6 +34,7 @@
                 </div>
                 <div class="comment-content">{{ $comment->body }}</div>
                 <div class="comment-date">{{ $comment->updated_at->diffForHumans() }}</div>
+                <div class="inserted-editor"></div>
                 {{--  Replies  --}}
                 @foreach ($replies as $reply)
                     @if ($reply->parent_id == $comment->id)
@@ -67,18 +73,21 @@
     {{-- 订阅后才能留言 --}}
     @can('show', $topic)
         {{-- 评论框 --}}
-        <li class="media write" id="write_comment">
-            <div class="media-left">
-                <img class="media-object img-circle" width="50px" src="{{ Auth::user()->avatar }}">
-            </div>
-            <div class="media-body">
-                @include('common.error')
-                <form id="comment_form" action="{{ route('comment.store') }}" method="post">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="topic_id" value="{{ $topic->id }}">
-                    <textarea name="body" class="editor" placeholder="理性留言的你可以说是很有素质了" required></textarea>
-                    <button class="btn btn-primary btn-wider-look" type="submit">提交</button><span class="submit-tip">（快捷键 Ctrl + Enter）</span>
-                </form>
+        <li id="reply-editor">
+            <div class="media create-reply">
+                <div class="media-left">
+                    <img class="media-object img-circle" width="50px" src="{{ Auth::user()->avatar }}">
+                </div>
+                <div class="media-body">
+                    @include('common.error')
+                    <form action="{{ route('comment.store') }}" method="post">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+                        <input type="hidden" name="course_id" value="{{ $course->id }}">
+                        <textarea name="body" class="editor" placeholder="理性留言的你可以说是很有素质了" required></textarea>
+                        <button class="btn btn-primary btn-wider-look" type="submit">提交</button><span class="submit-tip">（快捷键 Ctrl + Enter）</span>
+                    </form>
+                </div>
             </div>
         </li>
     @else

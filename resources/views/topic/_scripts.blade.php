@@ -1,8 +1,9 @@
 <script>
-    var $editor = $('#write_comment textarea');
+    var $editor = $('.create-reply .editor');
     var $jumper = $('#jump_to_editor');
-    var $form = $('#comment_form');
     var $header = $('.topic-header');
+    var $btnReply = $('.reply-button');
+    var $btnSubmit = $('.create-reply').find('button.btn');
         
     var $buttonsAddFavorite = $('.favorite-add');
     {{--
@@ -177,10 +178,30 @@
         })
     
         // Ctrl + Enter submit
-        $editor.keydown(function(event){
+        $editor.keydown(function(event) {
             if (event.ctrlKey && event.keyCode == 13) {
-                $form.submit();
+                $(this).parent('form').submit();
+                // Prevent to submit multi times
+                $(this).off('keydown').siblings('button.btn').attr('disabled','disabled');
             }
+        });
+
+        $btnSubmit.click(function() {
+            $(this).parent('form').submit();
+            $(this).attr('disabled','disabled').siblings('.editor').off('keydown');
+        });
+
+        // Reply button
+        $btnReply.click(function() {
+            var $cloneEditor = $('#reply-editor').children('.create-reply').clone({'withDataAndEvents':true});
+            var $cloneEditorForm = $cloneEditor.find('form');
+
+            var id = $(this).attr('data');
+            var $inputParentId = $('<input type="hidden" name="parent_id" value="' + parseInt(id) + '">');
+            $inputParentId.appendTo($cloneEditorForm);
+
+            var $insertedEditor = $(this).parents('.media-body').find('.inserted-editor');
+            $cloneEditor.appendTo($insertedEditor);
         });
     
         $buttonsAddFavorite.click(function() {

@@ -48,14 +48,14 @@ class TopicController extends Controller
 		$next = Topic::where('id', '>', $topic->id)->where('course_id', $topic->course_id)->where('chapter_id', $topic->chapter_id)->orderBy('id', 'asc')->first();
 
 		// Get comments and load user table to prevent N+1 problem.
-		$comments = $topic->comments()->where('parent_id', null)->orderBy('star', 'desc')->orderBy('updated_at', 'desc')->get()->load('user');
-        $replies = $topic->comments()->where('parent_id', '>', 0)->get()->load('user');
+		$comments = $topic->comments()->where('parent_id', null)->orderBy('star', 'desc')->orderBy('created_at', 'desc')->get()->load('user');
+        $replies = $topic->comments()->where('parent_id', '>', 0)->orderBy('created_at', 'asc')->get();
         
         // Get this course's chapters
         $chapters = json_decode($course->chapters);
 
         // Only role Superadmin and Admin can delete or reply the comments
-        if (Auth::user()->hasRole('Superadmin') || Auth::user()->hasRole('Admin')) {
+        if (Auth::check() && (Auth::user()->hasRole('Superadmin') || Auth::user()->hasRole('Admin'))) {
             $canDeleteComment = true;
             $canReplyComment = true;
         } else {

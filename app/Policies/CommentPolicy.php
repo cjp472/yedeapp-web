@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\User;
 use App\Comment;
+use App\Course;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CommentPolicy extends Policy
@@ -21,7 +22,7 @@ class CommentPolicy extends Policy
     }
 
     /**
-     * Check if the user is the owner of the comment before deleting.
+     * Check if the user is the owner before deleting.
      * 
      * @param  App\User  $currentUser
      * @param  App\Comment  $comment
@@ -29,7 +30,6 @@ class CommentPolicy extends Policy
      */
     public function destroy(User $currentUser, Comment $comment)
     {
-        // return $currentUser->isAuthorOf($comment);
         return false;
     }
 }
