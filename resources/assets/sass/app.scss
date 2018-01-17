@@ -389,7 +389,7 @@ body { margin-bottom: 60px; }
         .tab-content {
             padding: 15px;
 
-            .tab-pane > .item-list {
+            .item-list {
                 margin: 0;
                 padding: 0;
     
@@ -397,7 +397,13 @@ body { margin-bottom: 60px; }
                     margin: 0.5em auto;
                     padding: 0.5em 0;
                     list-style: none;
-                    border-bottom: #ddd 1px solid;
+                    border-bottom: #eee 1px solid;
+                }
+
+                .empty {
+                    margin: 2em auto;
+                    text-align: center;
+                    border-bottom: 0;
                 }
             }
         }

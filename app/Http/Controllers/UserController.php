@@ -26,11 +26,31 @@ class UserController extends Controller
      * @param  App\User  $user
      * @return View
      */
-    public function show(User $user)
+    public function show(User $user, $tab)
     {
-        $comments = $user->vote->topics()->paginate(10);
+        $items_per_page = 15;
 
-        return view('user.show', compact('user', 'comments'));
+        switch ($tab) {
+            case 'favorite':
+                $items = $user->vote->topics()->orderBy('created_at', 'desc')->with('course')->paginate($items_per_page);
+                break;
+                
+            case 'comment':
+                $items = $user->comments()->orderBy('created_at', 'desc')->with('course','topic')->paginate($items_per_page);
+                break;
+
+            case 'atme':
+                $items = [];
+                
+                break;
+
+            default: // history
+                $items = [];
+                break;
+        }
+        // $comments = $user->vote->topics()->paginate(10);
+        
+        return view('user.show', compact('user', 'items', 'tab'));
     }
     
     /**

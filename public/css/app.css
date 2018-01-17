@@ -8901,16 +8901,22 @@ body {
   padding: 15px;
 }
 
-.user-show-page .user-tabs .tab-content .tab-pane > .item-list {
+.user-show-page .user-tabs .tab-content .item-list {
   margin: 0;
   padding: 0;
 }
 
-.user-show-page .user-tabs .tab-content .tab-pane > .item-list li {
+.user-show-page .user-tabs .tab-content .item-list li {
   margin: 0.5em auto;
   padding: 0.5em 0;
   list-style: none;
-  border-bottom: #ddd 1px solid;
+  border-bottom: #eee 1px solid;
+}
+
+.user-show-page .user-tabs .tab-content .item-list .empty {
+  margin: 2em auto;
+  text-align: center;
+  border-bottom: 0;
 }
 
 .user-edit-page .panel-body .img-thumbnail,

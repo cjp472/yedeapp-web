@@ -25,16 +25,15 @@
                 <form id="course_form" class="form-horizontal" action="{{ route('course.store') }}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
             @endif
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                     <div class="form-group">
                         <label class="col-sm-2" for="name_field">课程名</label>
                         <div class="col-sm-7"><input class="form-control" type="text" name="name" id="name_field" value="{{ old('name', $course->name) }}" required /></div>
-                        <div class="col-sm-3 input-tips">课程中文名，如：从简单学起</div>
+                        <div class="col-sm-3 input-tips">课程中文名，例如：从简单学起</div>
                     </div> 
                     <div class="form-group">
                         <label class="col-sm-2" for="slug_field">英文名</label>
                         <div class="col-sm-7"><input class="form-control" type="text" name="slug" id="slug_field" value="{{ old('slug', $course->slug) }}" required /></div>
-                        <div class="col-sm-3 input-tips">显示在网址上，可用连字符，不能用空格。如：my-first-course</div>
+                        <div class="col-sm-3 input-tips">显示在网址上，可用连字符，不能用空格。例如：my-first-course</div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2" for="cover_field" class="cover-label">封面图</label>
@@ -58,7 +57,7 @@
                     <div class="form-group">
                         <label class="col-sm-2" for="price_field">价格</label>
                         <div class="col-sm-7"><input class="form-control" type="text" name="price" id="price_field" value="{{ old('price', $course->price) }}" required /></div>
-                        <div class="col-sm-3 input-tips">如：39.9</div>
+                        <div class="col-sm-3 input-tips">例如：39.9</div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2" for="intro_field">描述</label>

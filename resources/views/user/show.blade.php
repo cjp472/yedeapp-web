@@ -9,17 +9,18 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="media">
-                    <div align="center">
+                    <div class="text-center">
                         <img class="img-thumbnail img-responsive" src="{{ $user->avatar }}" width="300px" height="300px">
                     </div>
                     <div class="media-body">
                         <hr>
                         
+                        <h4><strong>用户</strong></h4>
+                        <p>{{ $user->name }}</p>
                         @if($user->introduction)
-                            <h4><strong>一句话介绍</strong></h4>
                             <p>{{ $user->introduction }}</p>
-                            <hr>
                         @endif
+                        <hr>
 
                         @if($user->phone)
                             <h4><strong>手机</strong></h4>
@@ -49,23 +50,22 @@
             <div class="panel-body">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="{{ route('user.show', [$user, 'history']) }}">历史</a></li>
-                    <li><a href="{{ route('user.show', [$user, 'favorite']) }}">收藏</a></li>
-                    <li><a href="{{ route('user.show', [$user, 'comments']) }}">留言</a></li>
-                    <li><a href="{{ route('user.show', [$user, 'star']) }}" >赞过</a></li>
-                    <li><a href="{{ route('user.show', [$user, 'atme']) }}">@我</a></li>
+                    <li class="{{ active_class(if_route('user.show') && (if_route_param('tab', 'history') || if_route_param('tab', ''))) }}"><a href="{{ route('user.show', [$user, 'history']) }}">历史</a></li>
+                    <li class="{{ active_class(if_route('user.show') && if_route_param('tab', 'favorite')) }}"><a href="{{ route('user.show', [$user, 'favorite']) }}">收藏</a></li>
+                    <li class="{{ active_class(if_route('user.show') && if_route_param('tab', 'comment')) }}"><a href="{{ route('user.show', [$user, 'comment']) }}">留言</a></li>
+                    <li class="{{ active_class(if_route('user.show') && if_route_param('tab', 'atme')) }}"><a href="{{ route('user.show', [$user, 'atme']) }}">@我</a></li>
                 </ul>
-
+                
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <ul class="item-list">
-                        @foreach ($comments as $comment)
-                            <li>
-                                {{ $comment->body }}
-                            </li>
-                        @endforeach
+                        @include('user._' . $tab)
                     </ul>
-                    <div class="text-center">{{ $comments->render() }}</div>
+                    @empty(!$items)
+                        <div class="text-center">
+                            {{ $items->render() }}
+                        </div>
+                    @endempty
                 </div>
             </div>
         </div>
