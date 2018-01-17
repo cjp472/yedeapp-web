@@ -23,7 +23,7 @@ class CommentController extends Controller
 		$comment->user_id = Auth::id();
 		$comment->save();
 
-		return redirect($comment->topic->link());
+		return redirect(jump_to_comment($comment));
 	}
 
     /**

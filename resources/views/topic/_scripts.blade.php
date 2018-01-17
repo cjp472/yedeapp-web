@@ -5,12 +5,10 @@
     var $header = $('.topic-header');
     var $btnReply = $('.reply-button');
     var $btnSubmit = $('.create-reply').find('button.btn');
-        
+    var $btnAtUser = $('.at-user');
+
     var $buttonsAddFavorite = $('.favorite-add');
-    {{--
-    // var $buttonsVoteComment = $('.comment-vote');
-    --}}
-    
+
     var USERID = '{{ Auth::id() }}';
     var TOPIC_VOTES = '{!! $topic->votes !!}';
     var TOPIC_API = "{{ route('topic.vote', $topic) }}";
@@ -87,94 +85,36 @@
         }
     }
     
-    {{--
-    // function CommentVoteButtons(buttons) {
-    //     this.buttons = buttons;
-    //     this.state = [];
-    //     this.initState = [];
-    //     this.star = [];
-    
-    //     this.setVoteUp = function(btn, star) {
-    //         this.setStyle(btn, 'btn-selected', 'btn-selected');
-    //         this.setIcon(btn, 'glyphicon-thumbs-up', 'glyphicon-heart');
-    //         this.setText(btn, star);
-    //     }
-    
-    //     this.setVoteDown = function(btn, star) {
-    //         this.setStyle(btn, 'btn-selected', '');
-    //         this.setIcon(btn, 'glyphicon-thumbs-up', 'glyphicon-thumbs-up');
-    //         this.setText(btn, star);
-    //     }
-    
-    //     this.toggle = function(btn) {
-    //         var key = btn.attr('data-key');
-    //         var star = parseInt(this.star[key]);
-    
-    //         if (this.state[key] == 'up') {
-    //             this.star[key] = star - 1;
-    //             this.setVoteDown(btn, this.star[key]);
-    //             this.state[key] = 'down';
-    //         } else {
-    //             this.star[key] = star + 1;
-    //             this.setVoteUp(btn, this.star[key]);
-    //             this.state[key] = 'up';
-    //         }
-    //     };
-    
-    //     this.init = function() {
-    //         var that = this;
-    //         this.buttons.each(function() {
-    //             var btn = $(this),
-    //                 key = btn.attr('data-key'),
-    //                 data = btn.attr('data-vote'),
-    //                 star = btn.attr('data-star');
-    
-    //             // Keep the star number whatever the state is.
-    //             that.star[key] = star;
-    
-    //             if (that.isVoted(data)) {
-    //                 that.state[key] = that.initState[key] = 'up';
-    //                 that.setVoteUp(btn);
-    //             } else {
-    //                 that.state[key] = that.initState[key] = 'down';
-    //                 that.setVoteDown(btn);
-    //             }
-    //         });
-    //     };
-    
-    //     // When the btn has been changed, return it's state 'up' or 'down'.
-    //     this.isChanged = function(btn) {
-    //         var key = btn.attr('data-key');
-    //         if (this.initState[key] != this.state[key]) {
-    //             return this.state[key];
-    //         } else {
-    //             return false;
-    //         }
-    //     }
-    // }
-    
-    // CommentVoteButtons.prototype = new ButtonsHandler();
-    // CommentVoteButtons.prototype.constructor = CommentVoteButtons;
-    // var cvbtns = new CommentVoteButtons($buttonsVoteComment);
-    // cvbtns.init();
-    --}}
-    
     FavoriteAddButtons.prototype = new ButtonsHandler();
     FavoriteAddButtons.prototype.constructor = FavoriteAddButtons;
     
     var fabtns = new FavoriteAddButtons($buttonsAddFavorite);
     fabtns.init();
-    
-    // Markdown parse
-    {{--  var parser = new Mditor.Parser();
-    var $markdownBody = $('.markdown-body');
-    var topicBody = parser.parse($markdownBody.html());
-    $markdownBody.html(topicBody);  --}}
 
     $(document).ready(function(){
-        // Init bootstrap popover
+        // Init prev and next buttons' popover
         $('[data-toggle="popover"]').popover();
-        // Only subscriber can leave message
+    
+        $buttonsAddFavorite.click(function() {
+            fabtns.toggle();
+        });
+    
+        $(window).on('beforeunload', function(){
+            if (fabtns.isChanged()) {
+                $.get(TOPIC_API);
+            }
+        });
+    
+        // Make topic-header show and hide
+        $(window).scroll(function(){
+            if ($(this).scrollTop() > 60) {
+                $header.show();
+            } else {
+                $header.hide();
+            }
+        });
+
+        // Only subscriber can leave messages
         if ($editor.length <= 0) {
             $jumper.popover();
         }
@@ -193,58 +133,43 @@
             }
         });
 
+        // Reply submit
         $btnSubmit.click(function() {
             $(this).parent('form').submit();
             $(this).attr('disabled','disabled').siblings('.editor').off('keydown');
         });
 
-        // Reply button
+        // Call author reply editor
         $btnReply.click(function() {
-            var $cloneEditor = $('#reply-editor').children('.create-reply').clone({'withDataAndEvents':true});
-            var $cloneEditorForm = $cloneEditor.find('form');
-
-            var id = $(this).attr('data');
-            var $inputParentId = $('<input type="hidden" name="parent_id" value="' + parseInt(id) + '">');
-            $inputParentId.appendTo($cloneEditorForm);
-
             var $insertedEditor = $(this).parents('.media-body').find('.inserted-editor');
-            $cloneEditor.appendTo($insertedEditor);
-        });
-    
-        $buttonsAddFavorite.click(function() {
-            fabtns.toggle();
-        });
-    
-        {{--  
-        //$buttonsVoteComment.click(function() {
-        //cvbtns.toggle($(this));
-        });  --}}
-    
-        $(window).on('beforeunload', function(){
-            if (fabtns.isChanged()) {
-                $.get(TOPIC_API);
-            }
-    
-            {{--
-            // $buttonsVoteComment.each(function() {
-            //     var btn = $(this);
-            //     var act, api;
-    
-            //     if (act = cvbtns.isChanged(btn)) {
-            //         api = btn.attr('data-uri') + '/' + act + '?s=' + Math.random();
-            //         $.get(api);
-            //     }
-            // });
-            --}}
-        });
-    
-        // Make topic-header show and hide
-        $(window).scroll(function(){
-            if ($(this).scrollTop() > 60) {
-                $header.show();
+            var isReplying = $(this).data('isReplying');
+
+            if (isReplying) {
+                $insertedEditor.find('.create-reply').remove();
+                $(this).children('span').text('回复');
+                $(this).data('isReplying', false);
             } else {
-                $header.hide();
+                var $cloneEditor = $('#reply-editor').children('.create-reply').clone({'withDataAndEvents':true});
+                var $cloneEditorForm = $cloneEditor.find('form');
+    
+                var id = $(this).attr('data');
+                var $inputParentId = $('<input type="hidden" name="parent_id" value="' + parseInt(id) + '">');
+                $inputParentId.appendTo($cloneEditorForm);
+    
+                $cloneEditor.appendTo($insertedEditor);      
+                $(this).children('span').text('取消回复');
+                $(this).data('isReplying', true);
             }
+        });
+
+        //at a user
+        $btnAtUser.click(function() {
+            var name = $(this).attr('data');
+            var atOne = '@' + name + ' ';
+            var text = $editor.text() + atOne;
+
+            $editor.text(text);
+            $editor.focus();
         });
     });
     </script>

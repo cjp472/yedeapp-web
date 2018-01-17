@@ -3,7 +3,7 @@
         <li class="media comment">
             <a id="comment_{{ $comment->id }}"></a>
             <div class="media-left">
-                <a href="{{ route('user.show', $comment->user_id) }}">
+                <a class="at-user" data="{{ $comment->user->name }}">
                     <img class="media-object img-circle" width="50px" src="{{ $comment->user->avatar }}">
                 </a>
             </div>
@@ -13,7 +13,7 @@
                     <div class="pull-right">
                         @if ($canReplyComment)
                             <div class="head-button">
-                                <a class="btn btn-link btn-md reply-button" data="{{ $comment->id }}"><i class="glyphicon glyphicon-comment"></i> 回复</a>
+                                <a class="btn btn-link btn-md reply-button" data="{{ $comment->id }}"><i class="glyphicon glyphicon-comment"></i> <span>回复</span></a>
                             </div>
                         @endif
                         @if ($canDeleteComment)
@@ -21,7 +21,7 @@
                                 <form action="{{ route('comment.destroy', $comment->id) }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-link btn-md"><i class="glyphicon glyphicon-trash"></i> 删除</button>
+                                    <button type="submit" class="btn btn-link btn-md"><i class="glyphicon glyphicon-trash"></i> <span>删除</span></button>
                                 </form>
                             </div>
                         @endif

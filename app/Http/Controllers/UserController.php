@@ -17,7 +17,7 @@ class UserController extends Controller
     public function __construct()
     {
         // Auth all the methods except show.
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth');
     }
 
     /**
@@ -26,7 +26,7 @@ class UserController extends Controller
      * @param  App\User  $user
      * @return View
      */
-    public function show(User $user, $tab)
+    public function show(User $user, $tab = 'history')
     {
         $items_per_page = 15;
 
@@ -41,14 +41,13 @@ class UserController extends Controller
 
             case 'atme':
                 $items = [];
-                
                 break;
 
+            case 'history':
             default: // history
                 $items = [];
                 break;
         }
-        // $comments = $user->vote->topics()->paginate(10);
         
         return view('user.show', compact('user', 'items', 'tab'));
     }
