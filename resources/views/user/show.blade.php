@@ -53,7 +53,7 @@
                     <li class="{{ active_class(if_route('user.show') && (if_route_param('tab', 'history') || if_route_param('tab', ''))) }}"><a href="{{ route('user.show', [$user, 'history']) }}">历史</a></li>
                     <li class="{{ active_class(if_route('user.show') && if_route_param('tab', 'favorite')) }}"><a href="{{ route('user.show', [$user, 'favorite']) }}">收藏</a></li>
                     <li class="{{ active_class(if_route('user.show') && if_route_param('tab', 'comment')) }}"><a href="{{ route('user.show', [$user, 'comment']) }}">留言</a></li>
-                    <li class="{{ active_class(if_route('user.show') && if_route_param('tab', 'atme')) }}"><a href="{{ route('user.show', [$user, 'atme']) }}">@我</a></li>
+                    {{--  <li class="{{ active_class(if_route('user.show') && if_route_param('tab', 'atme')) }}"><a href="{{ route('user.show', [$user, 'atme']) }}">@我</a></li>  --}}
                 </ul>
                 
                 <!-- Tab panes -->

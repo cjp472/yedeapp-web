@@ -39,10 +39,6 @@ class UserController extends Controller
                 $items = $user->comments()->orderBy('created_at', 'desc')->with('course','topic')->paginate($items_per_page);
                 break;
 
-            case 'atme':
-                $items = [];
-                break;
-
             case 'history':
             default: // history
                 $items = [];

@@ -3,9 +3,7 @@
         <li class="media comment">
             <a id="comment_{{ $comment->id }}"></a>
             <div class="media-left">
-                <a class="at-user" data="{{ $comment->user->name }}">
-                    <img class="media-object img-circle" width="50px" src="{{ $comment->user->avatar }}">
-                </a>
+                <img class="media-object img-circle" width="50px" src="{{ $comment->user->avatar }}">
             </div>
             <div class="media-body">
                 <div class="media-heading">
